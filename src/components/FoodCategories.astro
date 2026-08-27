@@ -294,9 +294,9 @@ const categories = [
     }
   }
 
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
     .cat-section {
-      padding: 5rem 0;
+      padding: 4.5rem 0;
     }
     .cat-organic-grid {
       grid-template-columns: 1fr;
@@ -312,6 +312,37 @@ const categories = [
     }
     .cat-item-title {
       font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cat-section {
+      padding: 3.5rem 0;
+    }
+    .cat-organic-grid {
+      row-gap: 3.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .cat-img-wrapper {
+      height: 250px;
+      margin-bottom: 1.2rem;
+    }
+    .cat-cutout-img {
+      max-height: 240px;
+      max-width: 290px;
+      transform: scale(1.12);
+    }
+    .cat-item-title {
+      font-size: 1.5rem;
+    }
+    .cat-item-desc {
+      font-size: 0.95rem;
+    }
+    .cat-action-btn {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      text-align: center;
     }
   }
 </style>

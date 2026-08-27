@@ -433,7 +433,13 @@ button {
   width: 100%;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
+}
+
+@media (max-width: 480px) {
+  .cantina-container {
+    padding: 0 1rem;
+  }
 }
 
 @media (min-width: 768px) {

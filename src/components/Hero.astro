@@ -280,18 +280,61 @@
 
   /* ── Mobile Responsive ── */
   @media (max-width: 900px) {
+    .hero-section {
+      min-height: auto;
+    }
+
     .hero-inner {
-      padding-top: 6rem;
-      padding-bottom: 4rem;
-      min-height: 100dvh;
+      padding-top: 5.5rem;
+      padding-bottom: 3.5rem;
+      min-height: auto;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-copy {
+      align-items: center;
+      gap: 1.4rem;
+      width: 100%;
+    }
+
+    .hero-badge-row {
+      justify-content: center;
+      gap: 0.6rem;
     }
 
     .hero-headline {
-      font-size: clamp(2.4rem, 9vw, 4rem);
+      font-size: clamp(2rem, 7.5vw, 3.8rem);
+      letter-spacing: -0.5px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      hyphens: manual;
+      max-width: 100%;
+      text-shadow: 
+        -2px -2px 0 rgba(255, 248, 222, 0.95),
+        2px -2px 0 rgba(255, 248, 222, 0.95),
+        -2px 2px 0 rgba(255, 248, 222, 0.95),
+        2px 2px 0 rgba(255, 248, 222, 0.95),
+        0 4px 14px rgba(7, 83, 25, 0.2);
+    }
+
+    .hero-subheadline {
+      font-size: 1rem;
+      padding: 0.9rem 1.2rem;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .hero-cta-group {
+      justify-content: center;
+      width: 100%;
+      gap: 0.9rem;
     }
 
     .hero-perks-strip {
       max-width: 100%;
+      justify-content: center;
     }
 
     .perk-sep {
@@ -299,19 +342,70 @@
     }
   }
 
-  @media (max-width: 480px) {
-    .line-break-mobile {
-      display: inline;
+  @media (max-width: 520px) {
+    .hero-inner {
+      padding-top: 4.8rem;
+      padding-bottom: 2.8rem;
+    }
+
+    .hero-copy {
+      gap: 1.1rem;
+    }
+
+    .hero-headline {
+      /* Specifically sized so 13-character "MEXIKANISCHER" fits smoothly within 320px-390px screens */
+      font-size: clamp(1.6rem, 7.4vw, 2.35rem);
+      line-height: 0.98;
+      letter-spacing: -0.5px;
+    }
+
+    .sticker-badge {
+      font-size: 0.76rem;
+      padding: 0.3rem 0.65rem;
+    }
+
+    .hero-subheadline {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      padding: 0.8rem 1rem;
     }
 
     .hero-cta-group {
       flex-direction: column;
       width: 100%;
+      gap: 0.75rem;
     }
 
     .hero-btn {
       width: 100%;
       justify-content: center;
+      padding: 0.95rem 1.2rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-perks-strip {
+      width: 100%;
+      border-radius: 16px;
+      padding: 0.75rem 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .perk-item {
+      font-size: 0.84rem;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .line-break-mobile {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero-headline {
+      font-size: 1.45rem;
     }
   }
 </style>
