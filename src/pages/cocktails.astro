@@ -1,0 +1,68 @@
+---
+// cocktails.astro — Cocktails & Margaritas Landing Page
+import Layout from '../layouts/Layout.astro';
+import CocktailsSection from '../components/CocktailsSection.astro';
+---
+
+<Layout
+  title="Cocktails & Margaritas Berlin-Mitte | Taco Loco Cantina Mexicana"
+  description="Mexikanisches Essen und Cocktails in Berlin-Mitte: Entdecke handgemixten Margaritas, Tequila & Mezcal, Longdrinks und alkoholfreie Drinks bei Taco Loco."
+  activePage="cocktails"
+>
+  <div class="page-top-spacer"></div>
+  <CocktailsSection />
+
+  <section class="cocktail-story-section">
+    <div class="cantina-container">
+      <div class="story-box cantina-card">
+        <span class="sticker-badge badge-favorite">🍸 MEXIKANISCHE AGAVENKULTUR</span>
+        <h2>100% TEQUILA & RAUCHIGER MEZCAL AUS OAXACA</h2>
+        <p>
+          Ein gelungener mexikanischer Abend beginnt oder endet an unserer Bar. Wir verwenden für unsere Drinks hochwertige Agavenspirituosen, frisch gepressten Limettensaft und hausgemachte Fruchtpürees. Ob klassische Margarita on the rocks, erfrischende Paloma oder feurige Habanero-Variante — entdecke unsere Barkarte in Berlin-Mitte.
+        </p>
+        <div class="story-actions">
+          <button class="btn-primary open-reserve-btn">
+            <span>BAR-TISCH RESERVIEREN →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-top-spacer {
+    height: 1.5rem;
+  }
+
+  .cocktail-story-section {
+    background-color: var(--bg-canvas);
+    padding: 3rem 0 5rem;
+  }
+
+  .story-box {
+    padding: 3rem 2.5rem;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+    background-color: var(--card-canvas);
+  }
+
+  .story-box h2 {
+    color: var(--brand-green);
+    margin: 1rem 0 1.2rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .story-box p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .story-actions {
+    display: flex;
+    justify-content: center;
+  }
+</style>

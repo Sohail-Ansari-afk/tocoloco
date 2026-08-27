@@ -1,0 +1,480 @@
+---
+// speisekarte.astro — Fast, Clean & Complete 8-Category Menu for Taco Loco
+import Layout from '../layouts/Layout.astro';
+
+const GOOGLE_RESERVE_URL = 'https://www.google.com/maps/reserve/v/dine/c/0hxd20-gUKU?source=pa&opi=79508299&hl=en-IN&gei=EL6PauOABevQwcsP1JSfoAE&ahbb=1&sourceurl=https://www.google.com/maps/preview/place?authuser%3D0%26hl%3Den%26gl%3Din%26pb%3D!1m14!1s0x47a851dbd1c782e9:0xe4e5b3aac100aaca!3m12!1m3!1d50109.128351697895!2d73.89408309999999!3d18.847821250000003!2m3!1f0!2f0!3f0!3m2!1i2552!2i1274!4f13.1!12m4!2m3!1i360!2i120!4i8!13m57!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m8!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!14m5!1sA76Pasy_JcyywcsP89HToAc:53!2s1i:0,t:150714,p:A76Pasy_JcyywcsP89HToAc:53!7e81!12e3!17sA76Pasy_JcyywcsP89HToAc:60!15m110!1m28!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m17!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!30b1!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!90m2!1m1!1e2!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!128m1!1b1!21m28!1m6!1m2!i0!2i0!2m2!1i530!2i1274!1m6!1m2!i2502!2i0!2m2!1i2552!2i1274!1m6!1m2!i0!2i0!2m2!1i2552!2i20!1m6!1m2!i0!2i1254!2m2!1i2552!2i1274!22m1!1e81!29m0!30m6!3b1!6m1!2b1!7m1!2b1!9b1!34m5!7b1!10b1!14b1!15m1!1b0!37i792!39sTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany%26q%3DTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany';
+
+const categories = [
+  {
+    id: 'tacos',
+    title: 'Tacos',
+    icon: '🌮',
+    subtitle: 'Mexikanische Tacos & Eintöpfe — Mit Käse überbacken & Tortillas serviert',
+    items: [
+      { nr: 65, name: 'Taco Loco (Haus-Spezialität)', price: '16,90 €', badge: '★ SIGNATURE', dietary: 'Vegetarisch / Vegan', desc: 'Gebratene Zucchini, Auberginen, Tomaten, Paprika, Zwiebel- und Champignonstreifen in Kräuter-Tomatensauce, überbacken mit Käse, dazu 4 Maistortillas, Guacamole, Salsa Picante und Sauerrahm.' },
+      { nr: 66, name: 'Tacos de Pollo', price: '17,90 €', badge: 'BELIEBT', desc: 'Gebratene Hähnchenbruststreifen mit Zwiebeln in exotischer Sauce nach Chefkoch Art, mit Käse überbacken, dazu 4 Weizenmehltortillas, Guacamole, Salsa Picante und Sauerrahm.' },
+      { nr: 68, name: 'Tacos al Pastor', price: '19,90 €', badge: 'HOT 🌶️', desc: 'Gebratene Rinderhüftsteakstreifen, Paprika, Zwiebeln, Bohnen, Fetakäse und Salsa Verde, serviert mit mexikanischem Reis und Salat.' },
+      { nr: 67, name: 'Tacos de Mexicana de Marisco', price: '17,90 €', badge: 'SEAFOOD 🦐', desc: 'Garnelen und Meeresfrüchte in exotischer Sauce nach Chefkoch Art, mit Zwiebeln und Paprika, dazu 4 Weizenmehltortillas, Guacamole, Sauerrahm und Salsa Picante.' },
+      { nr: 26, name: 'Tacos Mexicana (2 Stk.)', price: '9,90 €', badge: 'VEGGIE', dietary: 'Vegetarisch / Vegan', desc: '2 knusprige Mais Tortilla Schalen gefüllt mit Pico de Gallo und mit Käse überbacken.' },
+      { nr: 27, name: 'Tacos con Pollo / Carne (2 Stk.)', price: '11,90 €', badge: 'KNUSPRIG', desc: '2 knusprige Mais Tortilla Schalen gefüllt mit herzhaftem Rinderhackfleisch oder Hähnchenfleisch.' },
+      { nr: 28, name: 'Taco-Loco Mix Platte (Für 2 Personen)', price: '21,90 €', badge: 'FÜR 2 PERSONEN ★', desc: '6 knusprige Mais Tortilla Schalen gefüllt mit Rinderhackfleisch, Hähnchenfleisch und Pico de Gallo, serviert mit Salat.' },
+    ]
+  },
+  {
+    id: 'burritos',
+    title: 'Burritos',
+    icon: '🌯',
+    subtitle: 'Große gerollte Weizenmehltortillas mit Bohnenpüree, Reis & Käsekruste',
+    items: [
+      { nr: 80, name: 'Burrito Vegetariano', price: '13,90 €', badge: 'VEGGIE 🌱', dietary: 'Vegetarisch', desc: 'Große Weizenmehltortilla gefüllt mit verschiedenem Gemüse, Bohnenpüree und Reis, mit Tomatensauce und Käse überbacken, dazu zwei Saucen und Salatbeilage.' },
+      { nr: 81, name: 'Burrito Pollo', price: '14,90 €', badge: 'KLASSIKER', desc: 'Große Weizenmehltortilla gefüllt mit saftigem Hähnchenfleisch, Bohnenpüree und Reis, mit Tomatensauce und Käse überbacken, dazu zwei Saucen und Salatbeilage.' },
+      { nr: 82, name: 'Burrito Picadillo', price: '15,90 €', badge: 'HOT 🌶️', desc: 'Große Weizenmehltortilla gefüllt mit würzigem Rinderhackfleisch, Bohnenpüree und Reis, mit Tomatensauce und Käse überbacken, dazu zwei Saucen und Salatbeilage.' },
+      { nr: 83, name: 'Tres Amigos Combo', price: '17,90 €', badge: '★ TOP COMBO', desc: '1 Taco mit Rinderhackfleisch, 1 Taco mit Hähnchenfleisch und 1 Enchilada mit Gemüse, alles mit Käse überbacken, dazu Reis, Bohnen, Sauerrahm und Salat.' },
+    ]
+  },
+  {
+    id: 'quesadillas',
+    title: 'Quesadillas',
+    icon: '🧀',
+    subtitle: 'Zwei gegrillte Weizenmehltortillas mit 3 verschiedenen Käsesorten gefüllt',
+    items: [
+      { nr: 70, name: 'Quesadilla Amazona', price: '12,90 €', badge: 'VEGGIE 🌱', dietary: 'Vegetarisch', desc: 'Zwei gegrillte Weizenmehltortillas mit 3 verschiedenen Käsesorten und verschiedenem Gemüse gefüllt, dazu 2 Saucen nach Wahl und Salatbeilage.' },
+      { nr: 71, name: 'Quesadilla Pollo', price: '13,90 €', badge: '★ BESTSELLER', desc: 'Zwei gegrillte Weizenmehltortillas mit 3 verschiedenen Käsesorten und saftigem Hähnchenfleisch gefüllt, dazu 2 Saucen nach Wahl und Salatbeilage.' },
+      { nr: 72, name: 'Quesadilla Carne', price: '14,90 €', badge: 'RINDERHACK', desc: 'Zwei gegrillte Weizenmehltortillas mit 3 verschiedenen Käsesorten und Rinderhackfleisch gefüllt, dazu 2 Saucen nach Wahl und Salatbeilage.' },
+      { nr: 73, name: 'Quesadilla Mixtos', price: '14,90 €', badge: '★ MIXTOS', desc: 'Zwei gegrillte Weizenmehltortillas mit Hähnchenfleisch und Hackfleisch kombiniert und 3 verschiedenen Käsesorten gefüllt, dazu 2 Saucen und Salatbeilage.' },
+    ]
+  },
+  {
+    id: 'enchiladas',
+    title: 'Enchiladas',
+    icon: '🌶️',
+    subtitle: 'Zwei gerollte Maismehltortillas mit Tomatensauce und Käse überbacken',
+    items: [
+      { nr: 75, name: 'Enchilada Vegetariana', price: '13,90 €', badge: 'VEGGIE 🌱', dietary: 'Vegetarisch', desc: 'Zwei gerollte Maismehltortillas gefüllt mit Gemüse und mit Käse überbacken, mit Bohnenpüree und Reis, dazu zwei Saucen und Salatbeilage.' },
+      { nr: 76, name: 'Enchilada Pollo', price: '14,90 €', badge: '★ BESTSELLER', desc: 'Zwei gerollte Maismehltortillas gefüllt mit saftigem Hähnchenfleisch und mit Käse überbacken, mit Bohnenpüree und Reis, dazu zwei Saucen und Salatbeilage.' },
+      { nr: 77, name: 'Enchilada Carne', price: '15,90 €', badge: 'RINDERHACK', desc: 'Zwei gerollte Maismehltortillas gefüllt mit Rinderhackfleisch und mit Käse überbacken, mit Bohnenpüree und Reis, dazu zwei Saucen und Salatbeilage.' },
+      { nr: 78, name: 'Enchilada Mixtos', price: '18,90 €', badge: '★ DREIER-KOMBI', desc: 'Gefüllt mit 1x Hähnchenfleisch, 1x Rinderhackfleisch, 1x Vegetarisch und mit Käse überbacken, mit Bohnenpüree, Reis, 2 Saucen und Salat.' },
+    ]
+  },
+  {
+    id: 'vorspeisen',
+    title: 'Vorspeisen & Nachos',
+    icon: '🥑',
+    subtitle: 'Perfekt zum Teilen — Nachos, Dips, Chicken Wings & Diablitos',
+    items: [
+      { nr: 19, name: 'Chips con Guacamole, Salsa, California Dip', price: '9,90 €', badge: '★ FAVORIT', dietary: 'Vegetarisch', desc: 'Knusprige Mais Tortilla Schale gefüllt mit Nachos, dazu Guacamole, Salsa und California Dip.' },
+      { nr: 20, name: 'Mexico Patatas', price: '10,90 €', desc: 'Backkartoffel gefüllt mit Chilli con Carne und Cheddar-Mozzarella-Mix mit Käse überbacken, serviert mit Salatgarnitur und Sauerrahm.' },
+      { nr: 21, name: 'Mega Nachos Mixtos', price: '15,90 €', badge: 'MEGA PORTION', desc: 'Mais Tortilla Chips mit Tomaten, Zwiebeln, Koriander, Jalapeños, Hähnchenfleisch und Rinderhackfleisch, dazu Salsa.' },
+      { nr: 22, name: 'Nachos con Queso', price: '10,90 €', dietary: 'Vegetarisch', desc: 'Mais Tortilla Chips mit Käse überbacken und dazu Salsa Sauce.' },
+      { nr: 23, name: 'Nachos de Luxe', price: '12,90 €', desc: 'Mais Tortilla Chips mit Hähnchenfleisch oder Hackfleisch, dazu Jalapeños und Salsa Sauce.' },
+      { nr: 24, name: 'Diablitos Vegetarisch', price: '10,90 €', badge: 'HOT 🌶️', dietary: 'Vegetarisch', desc: 'Jalapeños gefüllt mit Cheddarkäse, serviert mit Salat und zwei Saucen.' },
+      { nr: 25, name: 'Chicken Wings', price: '11,90 €', desc: 'Hähnchenflügel mit Barbeque Sauce und Salat.' },
+    ]
+  },
+  {
+    id: 'beilagen',
+    title: 'Beilagen & Extras',
+    icon: '🍟',
+    subtitle: 'Köstliche Beilagen, hausgemachte Dips & extra Portionen',
+    items: [
+      { nr: 110, name: 'Tortilla', price: '3,00 €', dietary: 'Vegan', desc: 'Extra Portion warme Tortillas.' },
+      { nr: 111, name: 'Kartoffelecken (Country Potatoes)', price: '3,00 €', dietary: 'Vegan', desc: 'Knusprig gewürzte Kartoffelecken.' },
+      { nr: 112, name: 'Pommes Frites', price: '3,00 €', dietary: 'Vegan', desc: 'Goldgelb knusprig frittierte Pommes.' },
+      { nr: 113, name: 'Arroz (Mexikanischer Reis)', price: '3,00 €', dietary: 'Vegan', desc: 'Würziger traditioneller mexikanischer Cantina-Reis.' },
+      { nr: 114, name: 'Frijoles (Bohnen)', price: '2,50 €', dietary: 'Vegan', desc: 'Herzhaftes traditionelles Bohnenmus.' },
+      { nr: 115, name: 'Guacamole', price: '2,50 €', badge: '★ FRISCH', dietary: 'Vegan', desc: 'Täglich frisch zubereitete Avocadocreme mit Limette.' },
+      { nr: 116, name: 'Salsa Picante', price: '2,50 €', dietary: 'Vegan', desc: 'Feurige hausgemachte Cantina-Salsa.' },
+      { nr: 117, name: 'Sauerrahm', price: '2,50 €', dietary: 'Vegetarisch', desc: 'Kühler, cremiger Sauerrahm-Dip.' },
+    ]
+  },
+  {
+    id: 'salate',
+    title: 'Frische Salate',
+    icon: '🥗',
+    subtitle: 'Knackig frische Salate, serviert in der Tortillaschale oder mit zwei Tortillas',
+    items: [
+      { nr: 10, name: 'Ensalada Mixta', price: '9,90 €', badge: 'VEGGIE 🌱', dietary: 'Vegetarisch', desc: 'Gemischter Salat mit hausgemachtem Dressing, Schafskäse, Croutons und Kaktusstreifen, serviert in einer Tortillaschale.' },
+      { nr: 11, name: 'Caesar Chicken Salat', price: '11,90 €', badge: 'BELIEBT', desc: 'Gemischter Salat mit gegrillten Hähnchenbruststreifen, Caesar-Dressing, Parmesan und Croutons, mit zwei Tortillas serviert.' },
+      { nr: 12, name: 'Avocado Chicken Salat', price: '12,90 €', badge: '★ EMPFEHLUNG', desc: 'Gegrillte Hähnchenbruststreifen auf frischer Avocado mit Tomaten, Gurken, Paprika, roten Zwiebeln, Olivenöl und frischem Zitronensaft in Tortillaschale.' },
+      { nr: 13, name: 'Ensalada Ranchero', price: '14,90 €', badge: 'STEAK SALAD', desc: 'Gegrillte argentinische Rindersteakstreifen mit Eisbergsalat, Tomaten, Gurken, Paprika, Oliven, Kaktusstreifen und Chefkoch-Sauce, mit zwei Tortillas.' },
+      { nr: 14, name: 'Ensalada Camarones', price: '14,90 €', badge: 'SEAFOOD 🦐', desc: 'Gegrillte bangladeschische Garnelen mit diversen Blattsalaten, Tomaten, Gurken, Paprika, Oliven und exotischem Obst, mit zwei Tortillas.' },
+    ]
+  },
+  {
+    id: 'suppen',
+    title: 'Suppen & Caldos',
+    icon: '🥣',
+    subtitle: 'Alle Suppen werden mit zwei Tortilla Broten serviert',
+    items: [
+      { nr: 1, name: 'Sopa de Verdura', price: '6,90 €', badge: 'VEGAN 🌱', dietary: 'Vegan', desc: 'Gemüsesuppe mit verschiedenem frischem Gemüse.' },
+      { nr: 2, name: 'Sopa de Tortilla', price: '6,90 €', badge: 'VEGGIE', dietary: 'Vegetarisch', desc: 'Aromatische Tomatensuppe mit Fetakäse und frischer Guacamole.' },
+      { nr: 3, name: 'Chilli con Carne', price: '8,90 €', badge: 'KLASSIKER', desc: 'Mexikanischer Eintopf mit Rinderhackfleisch, Bohnen, Mais und Jalapeños.' },
+      { nr: 4, name: 'Chilli con Carne y Queso', price: '9,90 €', badge: '★ FAVORIT', desc: 'Mexikanischer Eintopf mit Rinderhackfleisch, Bohnen, Mais, Jalapeños und mit Käse überbacken.' },
+    ]
+  }
+];
+---
+
+<Layout
+  title="Speisekarte | Taco Loco Cantina Mexicana Berlin-Mitte"
+  description="Entdecke die Speisekarte von Taco Loco in Berlin-Mitte: Tacos, Burritos, Quesadillas, Enchiladas, Vorspeisen, Beilagen, Salate und Suppen."
+  activePage="speisekarte"
+>
+  <!-- Header -->
+  <div class="menu-page-header">
+    <div class="cantina-container">
+      <span class="sticker-badge badge-favorite">🇲🇽 ECHTE MEXIKANISCHE KÜCHE</span>
+      <h1 class="page-title">SPEISEKARTE</h1>
+      <p class="page-lead">
+        Alle Gerichte werden frisch mit authentischen mexikanischen Zutaten und viel Liebe in unserer Cantina in Berlin-Mitte zubereitet.
+      </p>
+
+      <!-- Category Navigation Pills -->
+      <div class="cat-nav-pills">
+        {categories.map((cat) => (
+          <a href={`#${cat.id}`} class="cat-pill">
+            <span>{cat.icon}</span>
+            <span>{cat.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Content -->
+  <main class="menu-sections-wrapper">
+    <div class="cantina-container">
+      
+      {categories.map((cat) => (
+        <section class="menu-cat-block" id={cat.id}>
+          
+          <div class="cat-block-header">
+            <div class="cat-title-row">
+              <span class="cat-icon-badge">{cat.icon}</span>
+              <div>
+                <h2 class="cat-block-title">{cat.title}</h2>
+                <p class="cat-block-sub">{cat.subtitle}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dishes Grid -->
+          <div class="dishes-editorial-grid">
+            {cat.items.map((dish) => (
+              <article class="dish-spread-row">
+                
+                <div class="dish-top-head">
+                  <div class="dish-title-box">
+                    <span class="dish-nr-badge">#{dish.nr}</span>
+                    <h3 class="dish-item-name">{dish.name}</h3>
+                    {dish.badge && <span class="sticker-badge badge-new">{dish.badge}</span>}
+                  </div>
+                  <span class="dish-item-price">{dish.price}</span>
+                </div>
+
+                <p class="dish-item-desc">{dish.desc}</p>
+
+                <div class="dish-bottom-meta">
+                  {dish.dietary ? (
+                    <span class="dietary-label">🌱 {dish.dietary}</span>
+                  ) : (
+                    <span></span>
+                  )}
+                  <a 
+                    href={GOOGLE_RESERVE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="reserve-mini-link"
+                    aria-label={`${dish.name} probieren - Tisch reservieren`}
+                  >
+                    <span>TISCH RESERVIEREN →</span>
+                  </a>
+                </div>
+
+              </article>
+            ))}
+          </div>
+
+        </section>
+      ))}
+
+      <!-- Allergen Note -->
+      <div class="allergen-note-open">
+        <div class="allergen-heading">
+          <span>ℹ️</span>
+          <h3>ALLERGENE & BESONDERE WÜNSCHE</h3>
+        </div>
+        <p class="allergen-main-text">
+          Bei Lebensmittelallergien oder Unverträglichkeiten sprich bitte unser Service-Team an. Viele unserer Gerichte können flexibel vegetarisch oder vegan zubereitet werden.
+        </p>
+        <div class="allergen-cta-row">
+          <p>Möchtest du einen Tisch reservieren?</p>
+          <a href={GOOGLE_RESERVE_URL} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <span>TISCH RESERVIEREN →</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .menu-page-header {
+    background-color: var(--bg-canvas);
+    padding: 4.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .page-title {
+    color: var(--brand-green);
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .page-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    max-width: 760px;
+    margin: 0 auto 2.2rem;
+    line-height: 1.6;
+  }
+
+  /* ── Category Anchor Pills ── */
+  .cat-nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+  }
+
+  .cat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: var(--brand-green);
+    background-color: #FFFDF3;
+    border: 2px solid var(--brand-green);
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .cat-pill:hover {
+    transform: translateY(-2px);
+    background-color: var(--accent-yellow);
+    color: var(--brand-green);
+  }
+
+  /* ── Menu Section Content ── */
+  .menu-sections-wrapper {
+    background-color: var(--bg-canvas);
+    padding: 4.5rem 0 6rem;
+  }
+
+  .menu-cat-block {
+    margin-bottom: 5rem;
+    scroll-margin-top: 110px;
+  }
+
+  .cat-block-header {
+    margin-bottom: 2.2rem;
+    border-bottom: 3px solid var(--brand-green);
+    padding-bottom: 1rem;
+  }
+
+  .cat-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cat-icon-badge {
+    font-size: 2.2rem;
+    background-color: var(--accent-yellow);
+    border: var(--border-thick);
+    border-radius: 12px;
+    padding: 0.3rem 0.6rem;
+    box-shadow: 0 3px 0 #075319;
+  }
+
+  .cat-block-title {
+    color: var(--brand-green);
+    font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .cat-block-sub {
+    color: var(--text-dark);
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Dishes Grid ── */
+  .dishes-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 3rem;
+  }
+
+  .dish-spread-row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: var(--border-dashed);
+    padding-bottom: 1.4rem;
+  }
+
+  .dish-top-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dish-title-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dish-nr-badge {
+    font-size: 0.82rem;
+    font-weight: 900;
+    color: #FFFDF3;
+    background-color: var(--brand-green);
+    padding: 0.15rem 0.45rem;
+    border-radius: 6px;
+  }
+
+  .dish-item-name {
+    font-size: 1.22rem;
+    color: var(--brand-green);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .dish-item-price {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--energy-red);
+    white-space: nowrap;
+  }
+
+  .dish-item-desc {
+    font-size: 0.96rem;
+    line-height: 1.5;
+    color: var(--text-ink);
+    margin: 0 0 0.8rem;
+  }
+
+  .dish-bottom-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    gap: 0.5rem;
+  }
+
+  .dietary-label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--brand-green);
+    background-color: rgba(7, 83, 25, 0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .reserve-mini-link {
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 0.82rem;
+    color: var(--energy-red);
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .reserve-mini-link:hover {
+    color: var(--brand-green);
+    transform: translateX(3px);
+  }
+
+  /* ── Allergen Footnote Box ── */
+  .allergen-note-open {
+    margin-top: 4.5rem;
+    padding: 2rem 2.2rem;
+    background-color: #FFFDF3;
+    border-radius: 16px;
+    border: var(--border-thick);
+    box-shadow: 0 6px 20px rgba(7, 83, 25, 0.08);
+  }
+
+  .allergen-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .allergen-heading h3 {
+    color: var(--brand-green);
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .allergen-main-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-ink);
+    margin-bottom: 1.2rem;
+  }
+
+  .allergen-cta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    border-top: 1px solid rgba(7, 83, 25, 0.15);
+    padding-top: 1.2rem;
+  }
+
+  .allergen-cta-row p {
+    font-weight: 700;
+    color: var(--brand-green);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .dishes-editorial-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .menu-page-header {
+      padding: 3rem 0 2.5rem;
+    }
+    .allergen-note-open {
+      padding: 1.5rem 1.2rem;
+    }
+    .allergen-cta-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

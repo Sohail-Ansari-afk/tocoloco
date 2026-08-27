@@ -1,0 +1,93 @@
+---
+// 404.astro — Zero-Cards & Zero-Characters 404 Error Page
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="404 — Seite nicht gefunden | Taco Loco Cantina Mexicana"
+  description="Ay Caramba! Diese Seite hat wohl eine falsche Abzweigung genommen."
+>
+  <section class="notfound-section">
+    <div class="cantina-container">
+      <div class="notfound-wrap-open">
+        <span class="sticker-badge badge-spicy">404 ERROR</span>
+        
+        <div class="notfound-img-wrap">
+          <img 
+            src="/images/Tacos.webp" 
+            alt="Taco Loco 404" 
+            class="notfound-food-img animate-bounce-subtle"
+            width="260"
+            height="220"
+          />
+        </div>
+
+        <h1 class="notfound-title">¡AY CARAMBA!</h1>
+        <p class="notfound-sub">
+          Sieht so aus, als hätte dieser Taco eine falsche Abzweigung genommen. Die von dir gesuchte Seite existiert leider nicht oder wurde verschoben.
+        </p>
+
+        <div class="notfound-actions">
+          <a href="/" class="btn-primary">
+            <span>ZURÜCK ZUR CANTINA →</span>
+          </a>
+          <a href="/speisekarte" class="btn-secondary">
+            <span>SPEISEKARTE ANSEHEN</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .notfound-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+  }
+
+  .notfound-wrap-open {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .notfound-img-wrap {
+    margin: 1.5rem 0;
+  }
+
+  .notfound-food-img {
+    max-height: 220px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+  }
+
+  .notfound-title {
+    color: var(--energy-red);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .notfound-sub {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 2.2rem;
+  }
+
+  .notfound-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+</style>

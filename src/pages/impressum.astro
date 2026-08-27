@@ -1,0 +1,88 @@
+---
+// impressum.astro — Zero-Cards Legal Imprint (§ 5 DDG)
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Impressum | Taco Loco Cantina Mexicana Berlin-Mitte"
+  description="Impressum und Angaben gemäß § 5 DDG von Taco Loco Cantina Mexicana in Berlin-Mitte."
+  activePage="impressum"
+>
+  <section class="legal-page-section">
+    <div class="cantina-container">
+      <div class="legal-container-open">
+        <span class="sticker-badge badge-favorite">ANGABEN GEMÄSS § 5 DDG</span>
+        <h1 class="legal-page-title">IMPRESSUM</h1>
+
+        <div class="legal-content">
+          <h2>Betreiber der Website</h2>
+          <p>
+            <strong>Taco Loco Cantina Mexicana</strong><br />
+            Reinhardtstraße 37<br />
+            10117 Berlin<br />
+            Deutschland
+          </p>
+
+          <h2>Kontakt</h2>
+          <p>
+            Telefon: +49 30 1234 5678<br />
+            E-Mail: hola@tacoloco-berlin.de
+          </p>
+
+          <h2>Umsatzsteuer-Identifikationsnummer</h2>
+          <p>
+            Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+            DE 123456789
+          </p>
+
+          <h2>Streitbeilegung</h2>
+          <p>
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page-section {
+    background-color: var(--bg-canvas);
+    padding: 4.5rem 0 6rem;
+  }
+
+  .legal-container-open {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .legal-page-title {
+    color: var(--brand-green);
+    margin: 1rem 0 2.5rem;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    border-bottom: 2px solid var(--brand-green);
+    padding-bottom: 0.8rem;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .legal-content h2 {
+    color: var(--brand-green);
+    font-size: 1.4rem;
+  }
+
+  .legal-content p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-ink);
+  }
+
+  .legal-content a {
+    color: var(--energy-red);
+    text-decoration: underline;
+  }
+</style>

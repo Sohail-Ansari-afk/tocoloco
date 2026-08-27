@@ -1,0 +1,88 @@
+---
+// datenschutz.astro — Zero-Cards Privacy Policy (GDPR / DSGVO)
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Datenschutzerklärung | Taco Loco Cantina Mexicana Berlin"
+  description="Datenschutzerklärung von Taco Loco Cantina Mexicana in Berlin-Mitte gemäß DSGVO."
+  activePage="datenschutz"
+>
+  <section class="legal-page-section">
+    <div class="cantina-container">
+      <div class="legal-container-open">
+        <span class="sticker-badge badge-favorite">RECHTLICHES</span>
+        <h1 class="legal-page-title">DATENSCHUTZERKLÄRUNG</h1>
+
+        <div class="legal-content">
+          <h2>1. Verantwortlicher</h2>
+          <p>
+            Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+            <strong>Taco Loco Cantina Mexicana</strong><br />
+            Reinhardtstraße 37<br />
+            10117 Berlin, Deutschland<br />
+            E-Mail: datenschutz@tacoloco-berlin.de<br />
+            Telefon: +49 30 1234 5678
+          </p>
+
+          <h2>2. Allgemeine Hinweise zur Datenverarbeitung</h2>
+          <p>
+            Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Personenbezogene Daten werden auf dieser Website nur im Rahmen der geltenden gesetzlichen Datenschutzvorschriften verarbeitet, insbesondere der Datenschutz-Grundverordnung (DSGVO).
+          </p>
+
+          <h2>3. Kontaktaufnahme und Tischreservierungen</h2>
+          <p>
+            Wenn Sie uns per E-Mail, Telefon oder über unser Reservierungsformular kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben (Name, E-Mail-Adresse, Telefonnummer, Wunschtermin, Personenanzahl), um Ihre Reservierungsanfrage zu bearbeiten. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. b DSGVO.
+          </p>
+
+          <h2>4. Google Maps & Externe Medien</h2>
+          <p>
+            Diese Website bindet Kartenmaterial von Google Maps sowie Videoelemente ein. Bei der Nutzung können Verbindungsdaten (z. B. IP-Adresse) an Server der jeweiligen Anbieter übermittelt werden. Die Nutzung erfolgt zur bequemen Auffindbarkeit und ansprechenden visuellen Darstellung unseres Restaurants.
+          </p>
+
+          <h2>5. Ihre Rechte gemäß DSGVO</h2>
+          <p>
+            Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Berichtigung, Löschung, Einschränkung der Verarbeitung sowie das Recht auf Datenübertragbarkeit und Beschwerde bei der zuständigen Aufsichtsbehörde.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-page-section {
+    background-color: var(--bg-canvas);
+    padding: 4.5rem 0 6rem;
+  }
+
+  .legal-container-open {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .legal-page-title {
+    color: var(--brand-green);
+    margin: 1rem 0 2.5rem;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    border-bottom: 2px solid var(--brand-green);
+    padding-bottom: 0.8rem;
+  }
+
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .legal-content h2 {
+    color: var(--brand-green);
+    font-size: 1.4rem;
+  }
+
+  .legal-content p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-ink);
+  }
+</style>

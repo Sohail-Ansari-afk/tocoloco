@@ -1,0 +1,185 @@
+---
+// ueber-uns.astro — Zero-Cards & Zero-Characters About Us Story Page
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Über uns | Taco Loco Cantina Mexicana Berlin-Mitte"
+  description="Lerne Taco Loco kennen: Unsere Geschichte, unsere Leidenschaft für echte mexikanische Rezepte und unser Team in Berlin-Mitte."
+  activePage="ueber-uns"
+>
+  <section class="about-hero-section">
+    <div class="cantina-container">
+      <div class="about-hero-grid">
+        <div class="about-hero-text">
+          <span class="sticker-badge badge-favorite">🇲🇽 UNSERE GESCHICHTE</span>
+          <h1 class="about-page-h1">BIG FLAVOR. ECHTE LEIDENSCHAFT.</h1>
+          <p class="about-hero-lead">
+            Taco Loco Cantina Mexicana wurde mit einer einfachen Vision gegründet: Mexikanisches Essen in Berlin so zu servieren, wie es sein sollte — voller Geschmack, mit frischen Zutaten, authentischen Gewürzen und einer Atmosphäre, in der sich jeder sofort wie unter Freunden fühlt.
+          </p>
+          <div class="about-action-row">
+            <button class="btn-primary open-reserve-btn">
+              <span>TISCH RESERVIEREN</span>
+              <span>→</span>
+            </button>
+            <a href="/speisekarte" class="btn-secondary">
+              <span>SPEISEKARTE ENTDECKEN</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="about-hero-img-col">
+          <img 
+            src="/images/Tacos.webp" 
+            alt="Taco Loco Cantina Mexicana Tacos" 
+            class="about-food-main animate-bounce-subtle"
+            width="380"
+            height="320"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Editorial Values (NO CARDS) -->
+  <section class="values-section">
+    <div class="cantina-container">
+      <div class="section-header-center">
+        <span class="sticker-badge badge-spicy">★ UNSERE WERTE</span>
+        <h2 class="section-title">WAS TACO LOCO AUSZEICHNET</h2>
+      </div>
+
+      <div class="values-editorial-grid">
+        <div class="value-item-row">
+          <span class="val-icon">🥑</span>
+          <div class="val-body">
+            <h3>FRISCHE ZUTATEN TÄGLICH</h3>
+            <p>Unsere Guacamole wird täglich frisch aus reifen Avocados mit Limette und Koriander zubereitet. Keine fertigen Pasten, keine Kompromisse.</p>
+          </div>
+        </div>
+
+        <div class="value-item-row">
+          <span class="val-icon">🌶️</span>
+          <div class="val-body">
+            <h3>ECHTE MEXIKANISCHE GEWÜRZE</h3>
+            <p>Von rauchigen Chipotle-Chilis über fruchtige Ancho-Sorten bis hin zu echtem Oaxaqueña-Mezcal importieren wir den Geschmack Mexikos direkt nach Berlin-Mitte.</p>
+          </div>
+        </div>
+
+        <div class="value-item-row">
+          <span class="val-icon">🎉</span>
+          <div class="val-body">
+            <h3>HERZLICHE CANTINA-ATMOSPHÄRE</h3>
+            <p>Bei uns bist du nicht einfach nur Gast — du bist Teil der Taco-Loco-Familie. Schneller, freundlicher Service und stimmungsvolle Cantina-Musik.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-hero-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 4.5rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .about-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .about-page-h1 {
+    color: var(--brand-green);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  .about-hero-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 2.2rem;
+  }
+
+  .about-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .about-hero-img-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-food-main {
+    max-height: 320px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+  }
+
+  .values-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6rem;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    font-size: 2.6rem;
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .values-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2.5rem;
+  }
+
+  .value-item-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .val-icon {
+    font-size: 2.5rem;
+  }
+
+  .val-body h3 {
+    font-family: var(--font-display);
+    color: var(--brand-green);
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .val-body p {
+    font-size: 0.95rem;
+    color: var(--text-ink);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 950px) {
+    .about-hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .values-editorial-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

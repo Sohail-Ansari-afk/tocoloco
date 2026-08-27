@@ -1,0 +1,211 @@
+---
+// VeganVegSection.astro — Zero-Cards Vegan & Vegetarian Editorial Spread (Zero Characters)
+---
+
+<section class="vegan-veg-section" id="vegan-vegetarisch">
+  <div class="cantina-container">
+    <div class="vegan-grid">
+      
+      <!-- Content Column -->
+      <div class="vegan-content">
+        <span class="sticker-badge badge-vegan" style="transform:rotate(-2deg)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 19a1 1 0 0 0 1.26 1.56C6.77 19.62 9.5 18 12 17c-1.44 4-3 5-3 5h3c3-2.5 5-7 4-14z"/></svg>
+          100% PLANT &amp; VEGGIE POWER
+        </span>
+        <h2 class="vegan-title">FÜR VEGETARIER & VEGANER</h2>
+        
+        <p class="vegan-lead">
+          Du möchtest <strong>vegan oder vegetarisch mexikanisch essen in Berlin-Mitte</strong>? Bei Taco Loco findest du eine bunte Vielfalt an ausgewiesenen pflanzlichen und vegetarischen Gerichten.
+        </p>
+
+        <div class="vegan-items-list" data-stagger>
+          <div class="v-item-row">
+            <span class="v-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3C8.5 3 5.5 5 4 8H20C18.5 5 15.5 3 12 3Z"/><path d="M4 10v3a8 8 0 0 0 16 0v-3H4Z"/></svg>
+            </span>
+            <div class="v-text">
+              <h4>VEGGIE TACOS &amp; BURRITOS</h4>
+              <p>Knackiges Grillgemüse mit Zucchini, Paprika, Champignons &amp; schwarzen Bohnen in Kräuter-Tomatensauce.</p>
+            </div>
+          </div>
+
+          <div class="v-item-row">
+            <span class="v-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="12" rx="9" ry="7"/><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+            <div class="v-text">
+              <h4>FRISCHE GUACAMOLE &amp; PICO DE GALLO</h4>
+              <p>Täglich frisch gestampfte Hass-Avocados mit Limettensaft, Koriander &amp; knusprigen Maistortillas.</p>
+            </div>
+          </div>
+
+          <div class="v-item-row">
+            <span class="v-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+            </span>
+            <div class="v-text">
+              <h4>VEGGIE ENCHILADAS &amp; QUESADILLAS</h4>
+              <p>Herzhaft gefüllt mit Gemüse und Schmelzkäse (auf Wunsch auch ohne Käse 100% vegan zubereitet).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="vegan-actions">
+          <a href="/vegan-vegetarisch" class="btn-primary">
+            <span>VEGGIE & VEGAN SPEISEKARTE →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Food Graphic Column -->
+      <div class="vegan-graphic" data-reveal>
+        <div class="food-plate-wrap">
+          <img 
+            src="/images/salad.webp" 
+            alt="Frischer mexikanischer Salat bei Taco Loco Berlin" 
+            class="vegan-food-img animate-bounce-subtle"
+            width="380"
+            height="320"
+            loading="lazy"
+          />
+        </div>
+        <span class="sticker-badge badge-favorite vegan-tag" style="transform:rotate(3deg)">★ GEMEINSAM ESSEN OHNE KOMPROMISSE</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .vegan-veg-section {
+    background-color: var(--bg-canvas);
+    padding: 5.5rem 0 6rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .vegan-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .vegan-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vegan-title {
+    color: var(--brand-green);
+    margin: 0.8rem 0 1rem;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  }
+
+  .vegan-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 2.2rem;
+  }
+
+  .vegan-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    width: 100%;
+    margin-bottom: 2.5rem;
+  }
+
+  .v-item-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .v-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    color: var(--brand-green);
+    margin-top: 2px;
+  }
+
+  .v-text h4 {
+    font-family: var(--font-display);
+    color: var(--brand-green);
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .v-text p {
+    font-size: 0.95rem;
+    color: var(--text-ink);
+    line-height: 1.5;
+  }
+
+  .vegan-actions {
+    display: flex;
+  }
+
+  /* ── Right Graphic ── */
+  .vegan-graphic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .food-plate-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .vegan-food-img {
+    max-height: 320px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+    transition: transform var(--dur-medium) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .vegan-food-img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+  }
+
+  .vegan-tag {
+    margin-top: 0.8rem;
+  }
+
+  @media (max-width: 950px) {
+    .vegan-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .vegan-content {
+      align-items: center;
+      text-align: center;
+    }
+    .v-item-row {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .vegan-veg-section {
+      padding: 3.5rem 0;
+    }
+    .vegan-food-img {
+      max-height: 220px;
+    }
+  }
+</style>

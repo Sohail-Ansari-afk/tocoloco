@@ -1,0 +1,317 @@
+---
+// Hero.astro — Taco Loco Cantina Mexicana
+// Full-viewport hero with YouTube loop video background, bold typography, CTAs & perks strip.
+---
+
+<section class="hero-section" id="hero" aria-label="Taco Loco Cantina Mexicana Berlin-Mitte">
+  
+  <!-- Full Background YouTube Video (Looping, Muted) -->
+  <div class="hero-video-wrapper" aria-hidden="true">
+    <iframe
+      class="hero-video-iframe"
+      src="https://www.youtube-nocookie.com/embed/ZcTaQuYZrNo?autoplay=1&mute=1&loop=1&playlist=ZcTaQuYZrNo&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&enablejsapi=1&disablekb=1"
+      title="Taco Loco Background Video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      tabindex="-1"
+    ></iframe>
+    <div class="hero-video-scrim"></div>
+  </div>
+
+  <div class="cantina-container hero-inner">
+
+    <!-- Hero Typography + Actions -->
+    <div class="hero-copy">
+
+      <!-- Location sticker badge -->
+      <div class="hero-badge-row">
+        <span class="sticker-badge badge-new" style="transform: rotate(-2deg)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          BERLIN-MITTE
+        </span>
+        <span class="sticker-badge badge-spicy" style="transform: rotate(2deg)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8 2 5 6 5 10c0 4 3 7 7 9 4-2 7-5 7-9 0-4-3-8-7-8z"/></svg>
+          100% REAL FLAVOR
+        </span>
+      </div>
+
+      <!-- Giant poster headline — Archivo Black with high-contrast text outlines for video backdrop -->
+      <h1 class="hero-headline" aria-label="Mexikanischer Genuss mitten in Berlin — Taco Loco Cantina Mexicana">
+        <span class="hero-title-line line-1">MEXIKANISCHER</span>
+        <span class="hero-title-line line-2">GENUSS</span>
+        <span class="hero-title-line line-3">MITTEN<br class="line-break-mobile"> IN BERLIN</span>
+      </h1>
+
+      <!-- Subheadline in a frosted badge container for crystal legibility -->
+      <p class="hero-subheadline">
+        Willkommen bei <strong>Taco Loco Cantina Mexicana</strong> in der Reinhardtstraße 37, Berlin-Mitte. Frische Tacos, saftige Burritos, gegrillte Fajitas und eiskalte Margaritas.
+      </p>
+
+      <!-- CTAs: Reserve Table & Order Now (In between Subheading & Perks) -->
+      <div class="hero-cta-group">
+        <a 
+          href="https://www.google.com/maps/reserve/v/dine/c/0hxd20-gUKU?source=pa&opi=79508299&hl=en-IN&gei=EL6PauOABevQwcsP1JSfoAE&ahbb=1&sourceurl=https://www.google.com/maps/preview/place?authuser%3D0%26hl%3Den%26gl%3Din%26pb%3D!1m14!1s0x47a851dbd1c782e9:0xe4e5b3aac100aaca!3m12!1m3!1d50109.128351697895!2d73.89408309999999!3d18.847821250000003!2m3!1f0!2f0!3f0!3m2!1i2552!2i1274!4f13.1!12m4!2m3!1i360!2i120!4i8!13m57!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m8!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!14m5!1sA76Pasy_JcyywcsP89HToAc:53!2s1i:0,t:150714,p:A76Pasy_JcyywcsP89HToAc:53!7e81!12e3!17sA76Pasy_JcyywcsP89HToAc:60!15m110!1m28!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m17!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!30b1!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!90m2!1m1!1e2!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!128m1!1b1!21m28!1m6!1m2!i0!2i0!2m2!1i530!2i1274!1m6!1m2!i2502!2i0!2m2!1i2552!2i1274!1m6!1m2!i0!2i0!2m2!1i2552!2i20!1m6!1m2!i0!2i1254!2m2!1i2552!2i1274!22m1!1e81!29m0!30m6!3b1!6m1!2b1!7m1!2b1!9b1!34m5!7b1!10b1!14b1!15m1!1b0!37i792!39sTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany%26q%3DTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-primary hero-btn" 
+          id="heroReserveBtn" 
+          aria-label="Tisch reservieren bei Taco Loco via Google Maps"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          TISCH RESERVIEREN
+        </a>
+        <a 
+          href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFsMnR6bGNxcxgAOgMI8A0%3D&g2lbs=AEzIGDvC4HW_Z0-1xRG2cpfR835KZDM220rsI6XlmHXEP4nQkpXT0trK13oud1z2s4qptYl2_8P5&hl=en-IN&gl=in&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&gei=EL6PauOABevQwcsP1JSfoAE&ei=EL6PauOABevQwcsP1JSfoAE&fo_s=OA&opi=79508299&ebb=1&cs=0&foub=mcpp" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-yellow hero-btn" 
+          aria-label="Jetzt online bestellen via Google"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          ORDER NOW
+        </a>
+      </div>
+
+      <!-- Quick trust strip — SVG icons, no emoji -->
+      <div class="hero-perks-strip">
+        <div class="perk-item">
+          <svg class="perk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>
+          <span>Hausgemachte Tacos</span>
+        </div>
+        <div class="perk-sep" aria-hidden="true"></div>
+        <div class="perk-item">
+          <svg class="perk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 20h20M6 20V10l6-6 6 6v10"/><path d="M10 20v-5h4v5"/></svg>
+          <span>Vegan &amp; Vegetarisch</span>
+        </div>
+        <div class="perk-sep" aria-hidden="true"></div>
+        <div class="perk-item">
+          <svg class="perk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 22l4-4 4 4M12 2v6M4.93 4.93l4.24 4.24M19.07 4.93l-4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M19.07 19.07l-4.24-4.24"/></svg>
+          <span>Cocktails &amp; Margaritas</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Hero Section ── */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    background-color: var(--bg-canvas);
+    border-bottom: 3px solid var(--brand-green);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Video Background ── */
+  .hero-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    min-width: 177.78vh; /* 16:9 */
+    min-height: 100%;
+    max-width: none !important;
+    max-height: none !important;
+    transform: translate(-50%, -50%) scale(1.35);
+    border: none;
+    pointer-events: none;
+    opacity: 1;
+    filter: contrast(1.08) saturate(1.15);
+  }
+
+  .hero-video-scrim {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 35% 50%,
+      rgba(255, 241, 199, 0.55) 0%,
+      rgba(255, 241, 199, 0.25) 60%,
+      rgba(255, 241, 199, 0.1) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ── Inner layout ── */
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 7rem;   /* nav clearance */
+    padding-bottom: 5rem;
+    min-height: 100dvh;
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* ── Hero Copy & Content ── */
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.8rem;
+    max-width: 860px;
+  }
+
+  .hero-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* ── Headline ── */
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 0.92;
+    letter-spacing: -1px;
+    color: var(--brand-green);
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 
+      -3px -3px 0 rgba(255, 248, 222, 0.95),
+      3px -3px 0 rgba(255, 248, 222, 0.95),
+      -3px 3px 0 rgba(255, 248, 222, 0.95),
+      3px 3px 0 rgba(255, 248, 222, 0.95),
+      0 6px 20px rgba(7, 83, 25, 0.25);
+  }
+
+  .hero-title-line {
+    display: block;
+    opacity: 0;
+    animation: cantinaFadeUp 0.65s var(--ease-out) forwards;
+  }
+
+  .line-1 { animation-delay: 0.08s; }
+  .line-2 { animation-delay: 0.18s; color: var(--energy-red); }
+  .line-3 { animation-delay: 0.28s; }
+
+  .line-break-mobile { display: none; }
+
+  /* ── Subheadline ── */
+  .hero-subheadline {
+    font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+    color: var(--text-dark);
+    line-height: 1.6;
+    max-width: 620px;
+    font-weight: 700;
+    opacity: 0;
+    animation: cantinaFadeUp 0.6s var(--ease-out) 0.4s forwards;
+    background-color: rgba(255, 248, 222, 0.94);
+    backdrop-filter: blur(12px);
+    padding: 1rem 1.4rem;
+    border-radius: var(--radius-card);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-sticker);
+  }
+
+  /* ── CTAs ── */
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+    opacity: 0;
+    animation: cantinaFadeUp 0.6s var(--ease-out) 0.5s forwards;
+  }
+
+  .hero-btn {
+    padding: 1.05rem 2.2rem;
+    font-size: 1.05rem;
+  }
+
+  /* ── Perks strip ── */
+  .hero-perks-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.4rem;
+    background-color: rgba(255, 248, 222, 0.94);
+    backdrop-filter: blur(10px);
+    border: var(--border-thick);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-sticker);
+    opacity: 0;
+    animation: cantinaFadeUp 0.5s var(--ease-out) 0.65s forwards;
+    max-width: max-content;
+  }
+
+  .perk-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--brand-green);
+    white-space: nowrap;
+  }
+
+  .perk-icon {
+    color: var(--brand-green);
+    flex-shrink: 0;
+  }
+
+  .perk-sep {
+    width: 1px;
+    height: 1.2rem;
+    background-color: rgba(7, 83, 25, 0.25);
+  }
+
+  /* ── Mobile Responsive ── */
+  @media (max-width: 900px) {
+    .hero-inner {
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+      min-height: 100dvh;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.4rem, 9vw, 4rem);
+    }
+
+    .hero-perks-strip {
+      max-width: 100%;
+    }
+
+    .perk-sep {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .line-break-mobile {
+      display: inline;
+    }
+
+    .hero-cta-group {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .hero-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

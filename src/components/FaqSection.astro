@@ -1,0 +1,182 @@
+---
+// FaqSection.astro — Zero-Cards SEO & AEO Optimized FAQ Accordion
+const faqs = [
+  {
+    q: 'Wo gibt es ein authentisches mexikanisches Restaurant in Berlin-Mitte?',
+    a: 'Taco Loco Cantina Mexicana ist ein mexikanisches Restaurant mitten in Berlin-Mitte. Du findest uns in der Reinhardtstraße 37, 10117 Berlin — nur wenige Minuten von der Friedrichstraße und dem Berliner Hauptbahnhof entfernt.'
+  },
+  {
+    q: 'Wo kann man in Berlin-Mitte die besten Tacos essen?',
+    a: 'Bei Taco Loco Cantina Mexicana in der Reinhardtstraße kannst du verschiedene frisch zubereitete Taco-Spezialitäten genießen, darunter Tacos de Pollo, Tacos al Pastor, Tacos de Marisco sowie unsere vegetarische Hausspezialität Taco Loco mit Guacamole und Salsa.'
+  },
+  {
+    q: 'Gibt es bei Taco Loco vegetarische Gerichte?',
+    a: 'Ja! Unsere Speisekarte bietet eine breite Palette an vegetarischen Gerichten, darunter vegetarische Burritos, Quesadillas mit Grillgemüse und Käse, überbackene Enchiladas sowie frische Salate und hausgemachte Nachos.'
+  },
+  {
+    q: 'Gibt es vegane mexikanische Gerichte bei Taco Loco?',
+    a: 'Ja. Auf unserer Speisekarte sind vegane Gerichte klar ausgewiesen. Viele Speisen können zudem auf Wunsch ohne Käse oder Sauerrahm rein pflanzlich zubereitet werden. Sprich unser Team einfach direkt an!'
+  },
+  {
+    q: 'Kann man bei Taco Loco mexikanische Cocktails & Margaritas trinken?',
+    a: 'Selbstverständlich! Unsere Cantina-Bar serviert handgemachte Classic & Frucht-Margaritas, Paloma, rauchigen Mezcal, Tequila Reposado, mexikanische Biere (Corona, Dos Equis) sowie erfrischende alkoholfreie Mocktails (Agua de Jamaica).'
+  },
+  {
+    q: 'Kann man bei Taco Loco einen Tisch reservieren?',
+    a: 'Ja, du kannst deinen Tisch bequem online über unseren Reservierungs-Button auf der Website oder telefonisch buchen. Besonders an Wochenenden und für größere Gruppen empfehlen wir eine rechtzeitige Reservierung.'
+  }
+];
+---
+
+<section class="faq-section" id="faq">
+  <div class="cantina-container">
+    
+    <!-- Section Header -->
+    <div class="section-header-center">
+      <span class="sticker-badge badge-favorite">★ HÄUFIGE FRAGEN</span>
+      <h2 class="section-title">FRAGEN & ANTWORTEN</h2>
+      <p class="section-lead">
+        Alles Wissenswerte über deinen Besuch bei <strong>Taco Loco Cantina Mexicana</strong> in Berlin-Mitte.
+      </p>
+    </div>
+
+    <!-- FAQ List (NO BOX CARDS) -->
+    <div class="faq-list-wrap">
+      {faqs.map((faq, idx) => (
+        <details class="faq-item-row" open={idx === 0}>
+          <summary class="faq-question-btn">
+            <div class="q-left-grp">
+              <span class="q-icon">🌮</span>
+              <span class="q-text">{faq.q}</span>
+            </div>
+            <span class="faq-toggle-glyph">+</span>
+          </summary>
+          <div class="faq-answer-content">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    margin: 0.6rem 0 0.8rem;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  }
+
+  .section-lead {
+    color: var(--text-dark);
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .faq-list-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item-row {
+    border-bottom: var(--border-dashed);
+    padding-bottom: 1.4rem;
+    margin-bottom: 0.8rem;
+    transition: all 0.2s ease;
+  }
+
+  .faq-question-btn {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 0.8rem 0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .faq-question-btn::-webkit-details-marker {
+    display: none;
+  }
+
+  .q-left-grp {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex: 1;
+  }
+
+  .q-icon {
+    font-size: 1.35rem;
+    flex-shrink: 0;
+  }
+
+  .q-text {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.12rem;
+    color: var(--brand-green);
+    line-height: 1.35;
+  }
+
+  .faq-toggle-glyph {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--accent-yellow);
+    color: var(--brand-green);
+    border: var(--border-thick);
+    box-shadow: 0 2px 0 #075319;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background-color 0.2s;
+  }
+
+  details[open] .faq-toggle-glyph {
+    transform: rotate(45deg);
+    background-color: var(--energy-red);
+    color: var(--bg-canvas);
+    border-color: #8f1c0d;
+    box-shadow: 0 2px 0 #8f1c0d;
+  }
+
+  .faq-answer-content {
+    padding: 0.6rem 0 0.5rem 2.8rem;
+    color: var(--text-ink);
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .faq-section {
+      padding: 3.5rem 0;
+    }
+    .faq-answer-content {
+      padding-left: 0;
+    }
+    .q-text {
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+// anfahrt.astro — Location & Directions Page Berlin-Mitte
+import Layout from '../layouts/Layout.astro';
+import LocationSection from '../components/LocationSection.astro';
+---
+
+<Layout
+  title="Taco Loco Berlin-Mitte | Reinhardtstraße 37, 10117 Berlin | Anfahrt"
+  description="Finde Taco Loco Cantina Mexicana in Berlin-Mitte. Reinhardtstraße 37, 10117 Berlin. Route mit Google Maps, ÖPNV-Verbindungen und Öffnungszeiten."
+  activePage="anfahrt"
+>
+  <div class="page-top-spacer"></div>
+  <LocationSection />
+</Layout>
+
+<style>
+  .page-top-spacer {
+    height: 1.5rem;
+  }
+</style>

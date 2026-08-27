@@ -1,0 +1,317 @@
+---
+// FoodCategories.astro — Zero-Cards Organic Category Showcase (Floating Cutouts on Canvas)
+const categories = [
+  { 
+    id: 'tacos',       
+    title: 'Tacos',            
+    badge: '★ SIGNATURE',
+    desc: 'Taco Loco, Pollo, Pastor & Marisco',
+    image: '/images/Tacos.webp',       
+    link: '/tacos'      
+  },
+  { 
+    id: 'burritos',    
+    title: 'Burritos',        
+    badge: 'BELIEBT',
+    desc: 'Saftig gefüllt & handgerollt',
+    image: '/images/Burritos.webp',    
+    link: '/burritos'   
+  },
+  { 
+    id: 'quesadillas', 
+    title: 'Quesadillas',      
+    badge: 'KNUSPRIG',
+    desc: 'Gegrillt mit viel Schmelzkäse',
+    image: '/images/Quesadillas.webp', 
+    link: '/quesadillas'
+  },
+  { 
+    id: 'enchiladas',  
+    title: 'Enchiladas',       
+    badge: 'FEURIG',
+    desc: 'Frisch aus dem Ofen mit Käsekruste',
+    image: '/images/Enchiladas.webp',  
+    link: '/enchiladas' 
+  },
+  { 
+    id: 'vorspeisen',  
+    title: 'Vorspeisen & Nachos', 
+    badge: 'GUACAMOLE',
+    desc: 'Knusprige Chips & Dips zum Teilen',
+    image: '/images/Vorspeisen.webp',  
+    link: '/vorspeisen'   
+  },
+  { 
+    id: 'beilagen',    
+    title: 'Beilagen & Extras',   
+    badge: 'SIDES',
+    desc: 'Reis, Bohnen, Jalapeños & Saucen',
+    image: '/images/Beilagen.webp',    
+    link: '/beilagen'      
+  },
+  { 
+    id: 'salad',       
+    title: 'Frische Salate',           
+    badge: 'FRESH',
+    desc: 'Bunte Cantina Salate mit Avocado',
+    image: '/images/salad.webp',       
+    link: '/salate'     
+  },
+  { 
+    id: 'soup',        
+    title: 'Suppen & Caldos',   
+    badge: 'WÄRMEND',
+    desc: 'Traditionelle mexikanische Eintöpfe',
+    image: '/images/soup.webp',        
+    link: '/suppen'      
+  },
+];
+---
+
+<section class="cat-section" id="kategorien">
+  <div class="categories-wide-container">
+    
+    <!-- Section Header -->
+    <div class="section-header-center" data-reveal>
+      <span class="sticker-badge badge-favorite">MEXIKANISCHE SPEZIALITÄTEN</span>
+      <h2 class="section-title">UNSERE KATEGORIEN</h2>
+      <p class="section-lead">
+        Von frisch gegrillten Tacos über sättigende Burritos bis hin zu köstlichen Quesadillas — wähle deine Lieblingskategorie bei Taco Loco.
+      </p>
+    </div>
+
+    <!-- 4-Column Organic Grid with data-stagger for IntersectionObserver scroll reveal -->
+    <div class="cat-organic-grid" data-stagger>
+      {categories.map((cat) => (
+        <a href={cat.link} class="cat-item-link">
+          <div class="cat-badge-wrap">
+            <span class="sticker-badge badge-new">{cat.badge}</span>
+          </div>
+
+          <div class="cat-img-wrapper">
+            <img
+              src={cat.image}
+              alt={`${cat.title} bei Taco Loco Berlin`}
+              class="cat-cutout-img"
+              width="600"
+              height="520"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="cat-info-wrap">
+            <h3 class="cat-item-title">{cat.title}</h3>
+            <p class="cat-item-desc">{cat.desc}</p>
+            <span class="cat-explore-btn">
+              <span>ENTDECKEN</span>
+              <span class="cat-arrow">→</span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="cat-bottom-action">
+      <a href="/speisekarte" class="btn-primary cat-action-btn">
+        GESAMTE SPEISEKARTE
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cat-section {
+    background-color: var(--bg-canvas);
+    padding: 7rem 0 8.5rem;
+    border-bottom: 3px solid var(--brand-green);
+    overflow: hidden;
+  }
+
+  .categories-wide-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 1600px) {
+    .categories-wide-container {
+      padding: 0 4rem;
+    }
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    margin: 0.8rem 0 1rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .section-lead {
+    color: var(--text-dark);
+    font-size: 1.3rem;
+    line-height: 1.6;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* ── 4-Column Open Organic Grid (Massive Full Width) ── */
+  .cat-organic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
+    row-gap: 6.5rem;
+    margin-bottom: 6rem;
+    align-items: end;
+  }
+
+  .cat-item-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 1rem 0.5rem;
+    position: relative;
+    border-radius: var(--radius-card);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cat-item-link:hover {
+      background-color: rgba(255, 248, 222, 0.6);
+    }
+  }
+
+  .cat-badge-wrap {
+    margin-bottom: 1.4rem;
+    z-index: 2;
+  }
+
+  .cat-img-wrapper {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .cat-cutout-img {
+    width: 100%;
+    max-width: 540px;
+    max-height: 480px;
+    object-fit: contain;
+    transform: scale(1.42);
+    filter: drop-shadow(0 28px 45px rgba(7, 83, 25, 0.38));
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cat-item-link:hover .cat-cutout-img {
+      transform: scale(1.58) translateY(-20px);
+      filter: drop-shadow(0 42px 64px rgba(7, 83, 25, 0.52));
+    }
+  }
+
+  .cat-info-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .cat-item-title {
+    color: var(--brand-green);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+  }
+
+  .cat-item-desc {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin-bottom: 1.3rem;
+    max-width: 320px;
+  }
+
+  .cat-explore-btn {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--energy-red);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .cat-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    font-size: 1.3rem;
+  }
+
+  .cat-item-link:hover .cat-arrow {
+    transform: translateX(10px);
+  }
+
+  .cat-bottom-action {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cat-action-btn {
+    padding: 1.25rem 3.2rem;
+    font-size: 1.2rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1450px) {
+    .cat-organic-grid {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 5.5rem;
+      column-gap: 3rem;
+    }
+    .cat-img-wrapper {
+      height: 480px;
+    }
+    .cat-cutout-img {
+      max-height: 460px;
+      transform: scale(1.38);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cat-section {
+      padding: 5rem 0;
+    }
+    .cat-organic-grid {
+      grid-template-columns: 1fr;
+      row-gap: 4.5rem;
+    }
+    .cat-img-wrapper {
+      height: 380px;
+    }
+    .cat-cutout-img {
+      max-height: 360px;
+      max-width: 400px;
+      transform: scale(1.28);
+    }
+    .cat-item-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>

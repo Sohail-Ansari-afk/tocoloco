@@ -1,0 +1,3 @@
+# Cloudflare Pages Edge Redirects
+/menu  /speisekarte  301
+/menu/*  /speisekarte  301

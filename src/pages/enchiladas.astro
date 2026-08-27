@@ -1,0 +1,223 @@
+---
+// enchiladas.astro — Zero-Cards Enchiladas Berlin-Mitte Landing Page
+import Layout from '../layouts/Layout.astro';
+
+const enchiladas = [
+  { nr: 75, name: 'Enchilada Vegetariana', price: '13,90 €', badge: 'VEGGIE 🌱', desc: 'Zwei gerollte Maismehltortillas gefüllt mit Gemüse und mit Käse überbacken, mit Bohnenpüree und Reis, dazu zwei Saucen und Salatbeilage.' },
+  { nr: 76, name: 'Enchilada Pollo', price: '14,90 €', badge: '★ BESTSELLER', desc: 'Zwei gerollte Maismehltortillas gefüllt mit saftigem Hähnchenfleisch und mit Käse überbacken, mit Bohnenpüree und Reis, dazu zwei Saucen und Salatbeilage.' },
+  { nr: 77, name: 'Enchilada Carne', price: '15,90 €', badge: 'RINDERHACK', desc: 'Zwei gerollte Maismehltortillas gefüllt mit Rinderhackfleisch und mit Käse überbacken, mit Bohnenpüree und Reis, dazu zwei Saucen und Salatbeilage.' },
+  { nr: 78, name: 'Enchilada Mixtos', price: '18,90 €', badge: '★ DREIER-KOMBI', desc: 'Gefüllt mit 1x Hähnchenfleisch, 1x Rinderhackfleisch, 1x Vegetarisch und mit Käse überbacken, mit Bohnenpüree, Reis, 2 Saucen und Salat.' }
+];
+---
+
+<Layout
+  title="Enchiladas Berlin | Überbackene Enchiladas in Berlin-Mitte | Taco Loco"
+  description="Heiß aus dem Ofen: Saftige Enchiladas in Berlin-Mitte bei Taco Loco Cantina Mexicana mit Käsekruste, Sauerrahm, mexikanischem Reis und Bohnen."
+  activePage="enchiladas"
+>
+  <section class="dish-hero-section">
+    <div class="cantina-container">
+      <div class="dish-hero-grid">
+        <div class="dish-hero-text">
+          <span class="sticker-badge badge-favorite">🌶️ ENCHILADAS BERLIN</span>
+          <h1 class="dish-page-h1">HEISS AUS DEM OFEN: ENCHILADAS</h1>
+          <p class="dish-hero-lead">
+            Gerollte Maistortillas, herzhafte Füllungen, würzige Chilisauce und eine goldgelbe Schmelzkäsekruste. Bei <strong>Taco Loco in Berlin-Mitte</strong> backen wir jede Portion frisch für dich.
+          </p>
+          <div class="hero-action-row">
+            <button class="btn-primary open-reserve-btn">
+              <span>TISCH RESERVIEREN</span>
+              <span>→</span>
+            </button>
+            <a href="/speisekarte" class="btn-secondary">
+              <span>GANZE SPEISEKARTE</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dish-hero-image-wrap">
+          <img 
+            src="/images/Enchiladas.webp" 
+            alt="Enchiladas Berlin-Mitte Taco Loco" 
+            class="dish-main-img animate-bounce-subtle"
+            width="400"
+            height="320"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dish-showcase-section">
+    <div class="cantina-container">
+      <div class="section-header-center">
+        <span class="sticker-badge badge-spicy">🌶️ UNSERE ENCHILADAS</span>
+        <h2 class="section-title">ÜBERBACKENER MEXIKANISCHER GENUSS</h2>
+      </div>
+
+      <div class="dish-editorial-grid">
+        {enchiladas.map((e) => (
+          <article class="dish-spread-item">
+            <div class="dish-item-header">
+              <div class="dish-item-title-grp">
+                <h3 class="dish-item-name">{e.name}</h3>
+                <span class="sticker-badge badge-new">{e.badge}</span>
+              </div>
+              <span class="dish-item-price">{e.price}</span>
+            </div>
+            <p class="dish-item-desc">{e.desc}</p>
+            <div class="dish-item-footer">
+              <button class="open-reserve-btn reserve-link">
+                <span>TISCH RESERVIEREN →</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .dish-hero-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 4rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .dish-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .dish-page-h1 {
+    color: var(--brand-green);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  .dish-hero-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .dish-hero-image-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dish-main-img {
+    max-height: 320px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+  }
+
+  .dish-showcase-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6rem;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    font-size: 2.6rem;
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .dish-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2.8rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .dish-spread-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.8rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .dish-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .dish-item-title-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .dish-item-price {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--energy-red);
+    white-space: nowrap;
+  }
+
+  .dish-item-name {
+    color: var(--brand-green);
+    font-size: 1.35rem;
+  }
+
+  .dish-item-desc {
+    font-size: 0.95rem;
+    color: var(--text-ink);
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+    flex: 1;
+  }
+
+  .dish-item-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .reserve-link {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--brand-green);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .reserve-link:hover {
+    color: var(--energy-red);
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 950px) {
+    .dish-hero-grid, .dish-editorial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

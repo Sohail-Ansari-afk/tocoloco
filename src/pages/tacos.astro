@@ -1,0 +1,323 @@
+---
+// tacos.astro — Zero-Cards Tacos Berlin-Mitte Landing Page
+import Layout from '../layouts/Layout.astro';
+
+const tacoDishes = [
+  {
+    nr: 65,
+    name: 'Taco Loco (Haus-Spezialität)',
+    price: '16,90 €',
+    badge: '★ HAUS-SPEZIALITÄT',
+    dietary: 'Vegetarisch / Vegan mögl.',
+    desc: 'Gebratene Zucchini, Auberginen, Tomaten, Paprika, Zwiebel- und Champignonstreifen in einer Kräuter-Tomatensauce, überbacken mit Käse, dazu 4 Maistortillas, Guacamole, Salsa Picante und Sauerrahm.'
+  },
+  {
+    nr: 66,
+    name: 'Tacos de Pollo',
+    price: '17,90 €',
+    badge: 'BELIEBT',
+    desc: 'Gebratene Hähnchenbruststreifen mit Zwiebeln in einer exotischen Sauce nach Chefkoch Art, mit Käse überbacken, dazu 4 Weizenmehltortillas, Guacamole, Salsa Picante und Sauerrahm.'
+  },
+  {
+    nr: 68,
+    name: 'Tacos al Pastor',
+    price: '19,90 €',
+    badge: 'HOT 🌶️',
+    desc: 'Gebratene Rinderhüftsteakstreifen, Paprika, Zwiebeln, Bohnen, Fetakäse und Salsa Verde, serviert mit mexikanischem Reis und Salat.'
+  },
+  {
+    nr: 67,
+    name: 'Tacos de Mexicana de Marisco',
+    price: '17,90 €',
+    badge: 'SEAFOOD 🦐',
+    desc: 'Garnelen und Meeresfrüchte in einer exotischen Sauce nach Chefkoch Art, mit Zwiebeln und Paprika, dazu 4 Weizenmehltortillas, Guacamole, Sauerrahm und Salsa Picante.'
+  },
+  {
+    nr: 26,
+    name: 'Tacos Mexicana (Vorspeise)',
+    price: '9,90 €',
+    badge: 'VEGGIE',
+    dietary: 'Vegetarisch / Vegan',
+    desc: '2 knusprige Mais Tortilla Schalen gefüllt mit Pico de Gallo und mit Käse überbacken.'
+  },
+  {
+    nr: 27,
+    name: 'Tacos con Pollo / Carne',
+    price: '11,90 €',
+    badge: 'KNUSPRIG',
+    desc: '2 knusprige Mais Tortilla Schalen gefüllt mit herzhaftem Rinderhackfleisch oder Hähnchenfleisch.'
+  },
+  {
+    nr: 28,
+    name: 'Taco-Loco Mix Platte (Für 2 Personen)',
+    price: '21,90 €',
+    badge: 'FÜR 2 PERSONEN ★',
+    desc: '6 knusprige Mais Tortilla Schalen gefüllt mit Rinderhackfleisch, Hähnchenfleisch und Pico de Gallo, serviert mit knackigem Salat.'
+  }
+];
+---
+
+<Layout
+  title="Tacos Berlin-Mitte | Mexikanische Tacos bei Taco Loco Cantina"
+  description="Lust auf echte Tacos in Berlin-Mitte? Entdecke Taco Loco Cantina Mexicana in der Reinhardtstraße mit Tacos de Pollo, Al Pastor, Marisco & Taco Loco mit Guacamole."
+  activePage="tacos"
+>
+  <!-- Page Header -->
+  <section class="dish-hero-section">
+    <div class="cantina-container">
+      <div class="dish-hero-grid">
+        <div class="dish-hero-text">
+          <span class="sticker-badge badge-favorite">🌮 TACOS BERLIN-MITTE</span>
+          <h1 class="dish-page-h1">MEXIKANISCHE TACOS BEI TACO LOCO</h1>
+          <p class="dish-hero-lead">
+            Du suchst <strong>authentische Tacos in Berlin-Mitte</strong>? Bei Taco Loco Cantina Mexicana findest du verschiedene Taco-Spezialitäten mit saftigem Fleisch, frischen Meeresfrüchten oder vegetarischem Grillgemüse.
+          </p>
+          <div class="hero-action-row">
+            <button class="btn-primary open-reserve-btn">
+              <span>TISCH RESERVIEREN</span>
+              <span>→</span>
+            </button>
+            <a href="/speisekarte" class="btn-secondary">
+              <span>GANZE SPEISEKARTE</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dish-hero-image-wrap">
+          <img 
+            src="/images/Tacos.webp" 
+            alt="Mexikanische Tacos Berlin-Mitte" 
+            class="dish-main-img animate-bounce-subtle"
+            width="400"
+            height="320"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dishes Showcase Grid (NO CARDS) -->
+  <section class="dish-showcase-section">
+    <div class="cantina-container">
+      <div class="section-header-center">
+        <span class="sticker-badge badge-spicy">🔥 TACO HIGHLIGHTS</span>
+        <h2 class="section-title">UNSERE TACO AUSWAHL</h2>
+        <p class="section-lead">
+          Je nach Gericht werden unsere Tacos mit warmen Tortillas, frischer Guacamole, Salsa Picante, Sauerrahm, mexikanischem Reis oder knackigem Salat serviert.
+        </p>
+      </div>
+
+      <div class="taco-editorial-grid">
+        {tacoDishes.map((taco) => (
+          <article class="dish-spread-item">
+            <div class="dish-item-header">
+              <div class="dish-item-title-grp">
+                <h3 class="taco-name">{taco.name}</h3>
+                <span class="sticker-badge badge-new">{taco.badge}</span>
+              </div>
+              <span class="taco-price">{taco.price}</span>
+            </div>
+            <p class="taco-desc">{taco.desc}</p>
+            <div class="dish-item-footer">
+              <button class="open-reserve-btn reserve-link">
+                <span>TISCH RESERVIEREN →</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- FAQ Box (NO BOX CARD) -->
+      <div class="dish-faq-block">
+        <h3>HÄUFIGE FRAGEN ZU UNSEREN TACOS</h3>
+        <div class="faq-row">
+          <strong>Wo kann man in Berlin-Mitte Tacos essen?</strong>
+          <p>Bei Taco Loco Cantina Mexicana in der Reinhardtstraße 37, 10117 Berlin-Mitte findest du eine reiche Auswahl an Tacos.</p>
+        </div>
+        <div class="faq-row">
+          <strong>Gibt es auch vegetarische Tacos?</strong>
+          <p>Ja, unser beliebter <em>Taco Loco</em> ist vollgepackt mit gebratenem Grillgemüse, Käsekruste, Sauerrahm und frischer Guacamole.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .dish-hero-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 4rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .dish-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .dish-page-h1 {
+    color: var(--brand-green);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  .dish-hero-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .dish-hero-image-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dish-main-img {
+    max-height: 320px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+  }
+
+  .dish-showcase-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6rem;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    font-size: 2.6rem;
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .section-lead {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+  }
+
+  .taco-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2.8rem;
+    margin-bottom: 4rem;
+  }
+
+  .dish-spread-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.8rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .dish-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .dish-item-title-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .taco-price {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--energy-red);
+    white-space: nowrap;
+  }
+
+  .taco-name {
+    color: var(--brand-green);
+    font-size: 1.35rem;
+  }
+
+  .taco-desc {
+    font-size: 0.95rem;
+    color: var(--text-ink);
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+    flex: 1;
+  }
+
+  .dish-item-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .reserve-link {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--brand-green);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .reserve-link:hover {
+    color: var(--energy-red);
+    transform: translateX(3px);
+  }
+
+  .dish-faq-block {
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--brand-green);
+  }
+
+  .dish-faq-block h3 {
+    color: var(--brand-green);
+    font-size: 1.4rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .faq-row {
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .faq-row strong {
+    color: var(--brand-green);
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .faq-row p {
+    font-size: 0.98rem;
+    color: var(--text-ink);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 950px) {
+    .dish-hero-grid, .taco-editorial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,468 @@
+/* ── Font Loading (Google Fonts with preconnect — self-host for production) ── */
+/* Fonts are preconnected in Layout.astro for faster load */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lilita+One&family=Manrope:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* ── Canvas & Brand Colors ── */
+  --bg-canvas: #FFF1C7;          /* Pale Faint Yellow - Primary Canvas */
+  --card-canvas: #FFF8DE;        /* Card Canvas - slightly lifted cream */
+  --brand-green: #075319;        /* Deep Mexican Green - Primary Dark */
+  --brand-green-dark: #043610;   /* Extra deep shade for contrast */
+  --brand-green-light: #0d6e24;  /* Lighter deep green */
+  --accent-yellow: #F7C844;      /* Bright Yellow - High Energy Accent */
+  --accent-gold: #F2A900;        /* Golden Yellow - Food Highlights */
+  --energy-red: #E43820;         /* Fiery Red - Turn Up The Heat */
+  --energy-red-dark: #b82813;    /* Deep Red */
+  --energy-orange: #F36B21;      /* Vibrant Cantina Orange */
+  --text-dark: #075319;          /* Headings & Body on Pale Yellow */
+  --text-ink: #171711;           /* Dense text / details */
+  --text-muted: #526338;         /* Secondary text */
+  --white: #ffffff;
+
+  /* ── Typography Tokens ── */
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sticker: 'Lilita One', cursive, sans-serif;
+
+  /* ── Custom Easing Curves (Emil Kowalski / animations.dev) ── */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ── Sticker & Physical Shadows ── */
+  --shadow-sticker: 0 4px 0 #075319;
+  --shadow-sticker-hover: 0 6px 0 #075319;
+  --shadow-sticker-active: 0 2px 0 #075319;
+  --shadow-sticker-red: 0 4px 0 #8f1c0d;
+  --shadow-sticker-red-hover: 0 6px 0 #8f1c0d;
+  
+  /* ── Floating Image Drop Shadows ── */
+  --drop-shadow-food: drop-shadow(0 12px 18px rgba(7, 83, 25, 0.22));
+  --drop-shadow-food-hover: drop-shadow(0 20px 28px rgba(7, 83, 25, 0.32));
+
+  /* ── Geometry ── */
+  --radius-pill: 9999px;
+  --radius-badge: 8px;
+  --radius-card: 20px;
+  --radius-frame: 24px;
+  --border-thick: 2px solid #075319;
+  --border-ultra: 3px solid #075319;
+  --border-dashed: 2px dashed rgba(7, 83, 25, 0.25);
+
+  /* ── Animation Durations ── */
+  --dur-fast: 160ms;
+  --dur-ui: 200ms;
+  --dur-medium: 500ms;
+  --dur-hero: 700ms;
+  --dur-ambient: 4500ms;
+}
+
+/* ── Reset & Base Styles ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-canvas);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-canvas);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Global Headings (BOLD POSTER STYLE) ── */
+h1, h2, h3, h4, h5, h6, .display-font {
+  font-family: var(--font-display);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 900;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  font-weight: 900;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ── Buttons (Poster Lift & Physical Press Interaction) ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--brand-green);
+  color: var(--accent-yellow);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-sticker);
+  /* Emil: specify exact properties, not transition:all */
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background-color var(--dur-ui) ease;
+  text-transform: uppercase;
+}
+
+/* Emil: gate hover on pointer device to avoid mobile false positives */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sticker-hover);
+    background-color: var(--brand-green-dark);
+  }
+}
+
+.btn-primary:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: var(--shadow-sticker-active);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--brand-green);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-sticker);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background-color var(--dur-ui) ease,
+    color var(--dur-ui) ease;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-secondary:hover {
+    background-color: var(--brand-green);
+    color: var(--accent-yellow);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sticker-hover);
+  }
+}
+
+.btn-secondary:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: var(--shadow-sticker-active);
+}
+
+.btn-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--accent-yellow);
+  color: var(--brand-green);
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-sticker);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background-color var(--dur-ui) ease;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-yellow:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sticker-hover);
+    background-color: #ffd866;
+  }
+}
+
+.btn-yellow:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: var(--shadow-sticker-active);
+}
+
+/* Red CTA — urgency/promotional moments */
+.btn-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--energy-red);
+  color: var(--bg-canvas);
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--energy-red-dark);
+  box-shadow: var(--shadow-sticker-red);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-red:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sticker-red-hover);
+  }
+}
+
+.btn-red:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+/* ── Sticker Badges (Hand-placed -3deg rotation) ── */
+.sticker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sticker);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-badge);
+  border: var(--border-thick);
+  transform: rotate(-3deg);
+  box-shadow: 0 3px 0 #075319;
+  user-select: none;
+}
+
+.badge-favorite {
+  background-color: var(--accent-gold);
+  color: var(--brand-green);
+}
+
+.badge-spicy, .badge-hot {
+  background-color: var(--energy-red);
+  color: var(--bg-canvas);
+  border-color: #8f1c0d;
+  box-shadow: 0 3px 0 #8f1c0d;
+}
+
+.badge-vegan, .badge-veg {
+  background-color: var(--brand-green);
+  color: var(--accent-yellow);
+}
+
+.badge-new {
+  background-color: var(--accent-yellow);
+  color: var(--brand-green);
+}
+
+/* ── CSS Keyframe Animations (run off-main-thread) ── */
+@keyframes cantinaFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes cantinaFloatRev {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(-2deg); }
+}
+
+@keyframes cantinaBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes cantinaFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cantinaScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes cantinaSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Animation Utility Classes ── */
+.animate-float {
+  animation: cantinaFloat var(--dur-ambient) ease-in-out infinite;
+}
+
+.animate-float-rev {
+  animation: cantinaFloatRev 5200ms ease-in-out infinite;
+}
+
+.animate-bounce-subtle {
+  animation: cantinaBounce 3800ms ease-in-out infinite;
+}
+
+/* Scroll-reveal base states — JS adds .revealed class */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--dur-medium) var(--ease-out),
+    transform var(--dur-medium) var(--ease-out);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children reveal — parent gets data-stagger, children get delay via inline style */
+[data-stagger] > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
+}
+
+[data-stagger].revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image clip-path reveal */
+[data-reveal-clip] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 700ms var(--ease-in-out);
+}
+
+[data-reveal-clip].revealed {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* will-change utility — apply only to elements that will animate */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* ── Container Layout ── */
+.cantina-container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cantina-container {
+    padding: 0 2.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cantina-container {
+    padding: 0 3.5rem;
+  }
+}
+
+/* ── Reduced Motion Accessibility (mandatory per design system) ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal],
+  [data-stagger] > *,
+  [data-reveal-clip] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}

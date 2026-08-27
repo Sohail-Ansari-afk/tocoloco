@@ -1,0 +1,247 @@
+---
+// burritos.astro — Zero-Cards Burrito Berlin-Mitte Landing Page
+import Layout from '../layouts/Layout.astro';
+
+const burritoDishes = [
+  {
+    nr: 80,
+    name: 'Burrito Vegetariano',
+    price: '13,90 €',
+    badge: 'VEGGIE 🌱',
+    desc: 'Große gerollte Weizenmehltortilla, gefüllt mit verschiedenem Gemüse, Bohnenpüree und Reis, mit Tomatensauce und Käse überbacken, dazu zwei Saucen und Salatbeilage.'
+  },
+  {
+    nr: 81,
+    name: 'Burrito Pollo',
+    price: '14,90 €',
+    badge: 'KLASSIKER',
+    desc: 'Große gerollte Weizenmehltortilla gefüllt mit saftigem Hähnchenfleisch, Bohnenpüree und Reis, mit Tomatensauce und Käse überbacken, dazu zwei Saucen und Salatbeilage.'
+  },
+  {
+    nr: 82,
+    name: 'Burrito Picadillo',
+    price: '15,90 €',
+    badge: 'HOT 🌶️',
+    desc: 'Große gerollte Weizenmehltortilla gefüllt mit würzigem Rinderhackfleisch, Bohnenpüree und Reis, mit Tomatensauce und Käse überbacken, dazu zwei Saucen und Salatbeilage.'
+  },
+  {
+    nr: 83,
+    name: 'Tres Amigos',
+    price: '17,90 €',
+    badge: '★ BESTSELLER COMBO',
+    desc: '1 Taco mit Rinderhackfleisch, 1 Taco mit Hähnchenfleisch und 1 Enchilada mit Gemüse, alles mit Käse überbacken, dazu Reis, Bohnen, Sauerrahm und Salat.'
+  }
+];
+---
+
+<Layout
+  title="Burrito Berlin-Mitte | Mexikanische Burritos | Taco Loco Cantina"
+  description="Entdecke saftige Burritos in Berlin-Mitte bei Taco Loco: vegetarisch, mit Hähnchen oder Rinderhackfleisch sowie Spezialkombos."
+  activePage="burritos"
+>
+  <section class="dish-hero-section">
+    <div class="cantina-container">
+      <div class="dish-hero-grid">
+        <div class="dish-hero-text">
+          <span class="sticker-badge badge-favorite">🌯 BURRITOS BERLIN-MITTE</span>
+          <h1 class="dish-page-h1">HERZHAFT GEFÜLLTE BURRITOS</h1>
+          <p class="dish-hero-lead">
+            Ein Burrito passt perfekt, wenn du Lust auf ein sättigendes mexikanisches Gericht hast. Bei <strong>Taco Loco in Berlin-Mitte</strong> servieren wir frisch gerollte Burritos mit Rind, Geflügel oder rein pflanzlichem Grillgemüse.
+          </p>
+          <div class="hero-action-row">
+            <button class="btn-primary open-reserve-btn">
+              <span>TISCH RESERVIEREN</span>
+              <span>→</span>
+            </button>
+            <a href="/speisekarte" class="btn-secondary">
+              <span>GANZE SPEISEKARTE</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dish-hero-image-wrap">
+          <img 
+            src="/images/Burritos.webp" 
+            alt="Burrito Berlin-Mitte Taco Loco" 
+            class="dish-main-img animate-bounce-subtle"
+            width="400"
+            height="320"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dish-showcase-section">
+    <div class="cantina-container">
+      <div class="section-header-center">
+        <span class="sticker-badge badge-spicy">🌯 BURRITO HIGHLIGHTS</span>
+        <h2 class="section-title">UNSERE BURRITO AUSWAHL</h2>
+      </div>
+
+      <div class="dish-editorial-grid">
+        {burritoDishes.map((b) => (
+          <article class="dish-spread-item">
+            <div class="dish-item-header">
+              <div class="dish-item-title-grp">
+                <h3 class="dish-item-name">{b.name}</h3>
+                <span class="sticker-badge badge-new">{b.badge}</span>
+              </div>
+              <span class="dish-item-price">{b.price}</span>
+            </div>
+            <p class="dish-item-desc">{b.desc}</p>
+            <div class="dish-item-footer">
+              <button class="open-reserve-btn reserve-link">
+                <span>TISCH RESERVIEREN →</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .dish-hero-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 4rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .dish-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .dish-page-h1 {
+    color: var(--brand-green);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  .dish-hero-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .dish-hero-image-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dish-main-img {
+    max-height: 320px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+  }
+
+  .dish-showcase-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6rem;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    font-size: 2.6rem;
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .dish-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2.8rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .dish-spread-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.8rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .dish-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .dish-item-title-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .dish-item-price {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--energy-red);
+    white-space: nowrap;
+  }
+
+  .dish-item-name {
+    color: var(--brand-green);
+    font-size: 1.35rem;
+  }
+
+  .dish-item-desc {
+    font-size: 0.95rem;
+    color: var(--text-ink);
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+    flex: 1;
+  }
+
+  .dish-item-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .reserve-link {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--brand-green);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .reserve-link:hover {
+    color: var(--energy-red);
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 950px) {
+    .dish-hero-grid, .dish-editorial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

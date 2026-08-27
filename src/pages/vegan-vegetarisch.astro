@@ -1,0 +1,86 @@
+---
+// vegan-vegetarisch.astro — Vegan & Vegetarian Landing Page Berlin-Mitte
+import Layout from '../layouts/Layout.astro';
+import VeganVegSection from '../components/VeganVegSection.astro';
+---
+
+<Layout
+  title="Veganes & vegetarisches mexikanisches Restaurant Berlin-Mitte | Taco Loco"
+  description="Mexikanisch vegan oder vegetarisch in Berlin-Mitte: Entdecke ausgewiesene vegane und vegetarische Tacos, Burritos, Enchiladas & Quesadillas bei Taco Loco."
+  activePage="vegan-vegetarisch"
+>
+  <div class="page-top-spacer"></div>
+  <VeganVegSection />
+
+  <section class="vegan-details-section">
+    <div class="cantina-container">
+      <div class="details-card-wrap">
+        <div class="v-detail-card cantina-card">
+          <h3>🥑 100% FRISCHE ZUTATEN & HAUSGEMACHTE SALSAS</h3>
+          <p>
+            Unsere mexikanische Küche basiert auf aromatischen Gewürzen, frischen Kräutern, Avocados, Bohnen, Mais und knackigem Grillgemüse. Bei uns kommen Vegetarier und Veganer voll auf ihre Kosten — ohne auf den vollen Cantina-Geschmack zu verzichten!
+          </p>
+        </div>
+
+        <div class="v-detail-card cantina-card">
+          <h3>🌱 GEMEINSAM ESSEN OHNE KOMPROMISSE</h3>
+          <p>
+            Gerade bei Gruppen oder Familien ist unsere Speisekarte ideal: Während eine Person vegan oder vegetarisch wählt, können andere Tacos mit Hähnchen, Fajitas mit Rindfleisch oder Meeresfrüchte genießen.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-centered">
+        <a href="/speisekarte" class="btn-primary">
+          <span>ZUR VOLLEN SPEISEKARTE →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-top-spacer {
+    height: 1.5rem;
+  }
+
+  .vegan-details-section {
+    background-color: var(--bg-canvas);
+    padding: 3rem 0 5rem;
+  }
+
+  .details-card-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .v-detail-card {
+    padding: 2rem;
+    background-color: var(--card-canvas);
+  }
+
+  .v-detail-card h3 {
+    color: var(--brand-green);
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .v-detail-card p {
+    font-size: 1rem;
+    color: var(--text-ink);
+    line-height: 1.6;
+  }
+
+  .cta-centered {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 800px) {
+    .details-card-wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

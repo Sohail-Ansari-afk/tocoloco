@@ -1,0 +1,23 @@
+---
+// speisekarte/[...slug].astro — Renders the complete menu for any sub-path
+import SpeisekartePage from '../speisekarte.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: undefined } },
+    { params: { slug: 'hausgemachte-getraenke' } },
+    { params: { slug: 'tacos' } },
+    { params: { slug: 'burritos' } },
+    { params: { slug: 'quesadillas' } },
+    { params: { slug: 'enchiladas' } },
+    { params: { slug: 'vorspeisen' } },
+    { params: { slug: 'beilagen' } },
+    { params: { slug: 'salate' } },
+    { params: { slug: 'suppen' } },
+    { params: { slug: 'fajitas' } },
+    { params: { slug: 'cocktails' } }
+  ];
+}
+---
+
+<SpeisekartePage />

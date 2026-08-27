@@ -1,0 +1,223 @@
+---
+// fajitas.astro — Zero-Cards Fajitas Berlin-Mitte Landing Page
+import Layout from '../layouts/Layout.astro';
+
+const fajitas = [
+  { nr: 60, name: 'Fajita Amazona', price: '16,90 €', badge: 'VEGGIE 🌱', desc: 'Mit verschiedenem gegrilltem Gemüse in aromatischer Kräuterbutter geschwenkt, serviert mit Guacamole, Sauerrahm, Salsa Picante und 4 Tortillas.' },
+  { nr: 61, name: 'Fajita Pollo', price: '18,90 €', badge: '★ BESTSELLER', desc: 'Mit saftig gegrillten Hähnchenbruststreifen, Zwiebeln, Knoblauch und Paprika in einer heißen Pfanne serviert, dazu Dips und 4 Tortillas.' },
+  { nr: 62, name: 'Fajita Carne', price: '19,90 €', badge: 'ARGENTINISCHES RIND', desc: 'Mit gegrillten argentinischen Rinderhüftenstreifen, Zwiebeln, Knoblauch und Paprika in heißer Pfanne, dazu Dips und 4 Tortillas.' },
+  { nr: 63, name: 'Fajita Camarones', price: '20,90 €', badge: 'GROSSGARNELEN 🦐', desc: 'Mit saftigen gegrillten Großgarnelen, Zwiebeln, Knoblauch und Paprika in der heißen Pfanne serviert, dazu Dips und 4 Tortillas.' }
+];
+---
+
+<Layout
+  title="Fajitas Berlin-Mitte | Heiße Pfannengerichte bei Taco Loco Cantina"
+  description="Zischend serviert in der Gusseisenpfanne: Probiere herzhafte Fajitas in Berlin-Mitte bei Taco Loco mit Rind, Geflügel, Garnelen oder vegetarischem Grillgemüse."
+  activePage="fajitas"
+>
+  <section class="dish-hero-section">
+    <div class="cantina-container">
+      <div class="dish-hero-grid">
+        <div class="dish-hero-text">
+          <span class="sticker-badge badge-favorite">🥘 FAJITAS BERLIN-MITTE</span>
+          <h1 class="dish-page-h1">ZISCHEND HEISS IN DER PFANNE</h1>
+          <p class="dish-hero-lead">
+            Unsere Fajitas kommen brutzelnd heiß in der gusseisernen Pfanne an deinen Tisch. Dazu servieren wir 3 warme Weizentortillas, Sauerrahm, hausgemachte Guacamole und Salsa.
+          </p>
+          <div class="hero-action-row">
+            <button class="btn-primary open-reserve-btn">
+              <span>TISCH RESERVIEREN</span>
+              <span>→</span>
+            </button>
+            <a href="/speisekarte" class="btn-secondary">
+              <span>SPEISEKARTE ANSEHEN</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dish-hero-image-wrap">
+          <img 
+            src="/images/Tacos.webp" 
+            alt="Fajitas Berlin-Mitte Taco Loco" 
+            class="dish-main-img animate-bounce-subtle"
+            width="400"
+            height="320"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dish-showcase-section">
+    <div class="cantina-container">
+      <div class="section-header-center">
+        <span class="sticker-badge badge-spicy">🥘 PFANNEN-SPEZIALITÄTEN</span>
+        <h2 class="section-title">UNSERE FAJITA HIGHLIGHTS</h2>
+      </div>
+
+      <div class="dish-editorial-grid">
+        {fajitas.map((f) => (
+          <article class="dish-spread-item">
+            <div class="dish-item-header">
+              <div class="dish-item-title-grp">
+                <h3 class="dish-item-name">{f.name}</h3>
+                <span class="sticker-badge badge-new">{f.badge}</span>
+              </div>
+              <span class="dish-item-price">{f.price}</span>
+            </div>
+            <p class="dish-item-desc">{f.desc}</p>
+            <div class="dish-item-footer">
+              <button class="open-reserve-btn reserve-link">
+                <span>TISCH RESERVIEREN →</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .dish-hero-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 4rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .dish-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.9fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .dish-page-h1 {
+    color: var(--brand-green);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.05;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  .dish-hero-lead {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .dish-hero-image-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dish-main-img {
+    max-height: 320px;
+    width: auto;
+    object-fit: contain;
+    filter: var(--drop-shadow-food);
+  }
+
+  .dish-showcase-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 6rem;
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    font-size: 2.6rem;
+    margin: 0.6rem 0 0.8rem;
+  }
+
+  .dish-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2.8rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .dish-spread-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.8rem;
+    border-bottom: var(--border-dashed);
+  }
+
+  .dish-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .dish-item-title-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .dish-item-price {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--energy-red);
+    white-space: nowrap;
+  }
+
+  .dish-item-name {
+    color: var(--brand-green);
+    font-size: 1.35rem;
+  }
+
+  .dish-item-desc {
+    font-size: 0.95rem;
+    color: var(--text-ink);
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+    flex: 1;
+  }
+
+  .dish-item-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .reserve-link {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--brand-green);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .reserve-link:hover {
+    color: var(--energy-red);
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 950px) {
+    .dish-hero-grid, .dish-editorial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,544 @@
+---
+// Navbar.astro — Taco Loco Cantina Mexicana Sticky Navigation
+// All JS (drawer, scroll sticky) is handled by src/scripts/animations.js
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = 'home' } = Astro.props;
+---
+
+<header class="cantina-header" id="cantinaHeader">
+  <nav class="nav-container" role="navigation" aria-label="Hauptnavigation">
+
+    <!-- Left Navigation Links (Desktop) -->
+    <div class="nav-group nav-left">
+      <a href="/speisekarte" class:list={['nav-link', { active: activePage === 'speisekarte' }]}>
+        SPEISEKARTE
+      </a>
+      <a href="/tacos" class:list={['nav-link', { active: activePage === 'tacos' }]}>
+        TACOS
+      </a>
+      <a href="/burritos" class:list={['nav-link', { active: activePage === 'burritos' }]}>
+        BURRITOS
+      </a>
+      <a href="/cocktails" class:list={['nav-link', { active: activePage === 'cocktails' }]}>
+        COCKTAILS
+      </a>
+    </div>
+
+    <!-- Center Brand Logo -->
+    <div class="nav-center">
+      <a href="/" class="logo-wrapper" title="Taco Loco Cantina Mexicana — Startseite">
+        <img 
+          src="/logo.png" 
+          alt="Taco Loco Cantina Mexicana Logo" 
+          class="brand-logo" 
+          width="28" 
+          height="140"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </a>
+    </div>
+
+    <!-- Right Navigation Links & Actions (Desktop) -->
+    <div class="nav-group nav-right">
+      <a href="/ueber-uns" class:list={['nav-link', { active: activePage === 'ueber-uns' }]}>
+        ÜBER UNS
+      </a>
+      <a href="/anfahrt" class:list={['nav-link', { active: activePage === 'anfahrt' }]}>
+        ANFAHRT
+      </a>
+      
+      <!-- Primary Reservation CTA — Direct Google Maps Reserve Link -->
+      <a 
+        href="https://www.google.com/maps/reserve/v/dine/c/0hxd20-gUKU?source=pa&opi=79508299&hl=en-IN&gei=EL6PauOABevQwcsP1JSfoAE&ahbb=1&sourceurl=https://www.google.com/maps/preview/place?authuser%3D0%26hl%3Den%26gl%3Din%26pb%3D!1m14!1s0x47a851dbd1c782e9:0xe4e5b3aac100aaca!3m12!1m3!1d50109.128351697895!2d73.89408309999999!3d18.847821250000003!2m3!1f0!2f0!3f0!3m2!1i2552!2i1274!4f13.1!12m4!2m3!1i360!2i120!4i8!13m57!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m8!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!14m5!1sA76Pasy_JcyywcsP89HToAc:53!2s1i:0,t:150714,p:A76Pasy_JcyywcsP89HToAc:53!7e81!12e3!17sA76Pasy_JcyywcsP89HToAc:60!15m110!1m28!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m17!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!30b1!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!90m2!1m1!1e2!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!128m1!1b1!21m28!1m6!1m2!i0!2i0!2m2!1i530!2i1274!1m6!1m2!i2502!2i0!2m2!1i2552!2i1274!1m6!1m2!i0!2i0!2m2!1i2552!2i20!1m6!1m2!i0!2i1254!2m2!1i2552!2i1274!22m1!1e81!29m0!30m6!3b1!6m1!2b1!7m1!2b1!9b1!34m5!7b1!10b1!14b1!15m1!1b0!37i792!39sTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany%26q%3DTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-cta-btn" 
+        id="navReserveBtn"
+        aria-label="Tisch reservieren via Google Maps"
+      >
+        <!-- Taco SVG icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3C8.5 3 5.5 5 4 8H20C18.5 5 15.5 3 12 3Z" fill="currentColor"/>
+          <path d="M3.5 10C3.2 11 3 12 3 13C3 17.4 7 21 12 21C17 21 21 17.4 21 13C21 12 20.8 11 20.5 10H3.5Z" fill="currentColor" opacity="0.6"/>
+          <path d="M7 13.5C8.5 15 10 16 12 16C14 16 15.5 15 17 13.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        RESERVIEREN
+      </a>
+
+      <!-- Mobile Hamburger Toggle — CSS morphs to X -->
+      <button 
+        class="mobile-toggle-btn" 
+        id="mobileMenuToggle" 
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="mobileDrawer"
+      >
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu — slide in from right -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true" role="dialog" aria-label="Navigationsmenü">
+    <div class="mobile-drawer-inner">
+      <div class="drawer-header">
+        <a href="/" class="drawer-logo" aria-label="Zur Startseite">
+          <img src="/logo.png" alt="Taco Loco" class="drawer-logo-img" width="110" height="63" loading="lazy" />
+        </a>
+        <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Menü schließen">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="mobile-links" aria-label="Mobile Navigation">
+        <a href="/speisekarte" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="12" y2="16"/></svg>
+          SPEISEKARTE
+        </a>
+        <a href="/tacos" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3C8.5 3 5.5 5 4 8H20C18.5 5 15.5 3 12 3Z"/><path d="M4 10v3a8 8 0 0 0 16 0v-3H4Z"/></svg>
+          TACOS
+        </a>
+        <a href="/burritos" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="12" rx="9" ry="5"/><path d="M3 12a9 5 0 0 0 18 0"/></svg>
+          BURRITOS
+        </a>
+        <a href="/quesadillas" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+          QUESADILLAS
+        </a>
+        <a href="/enchiladas" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8Z"/><path d="M7 12c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5-5-2.2-5-5Z"/></svg>
+          ENCHILADAS
+        </a>
+        <a href="/fajitas" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 3l14 0M5 8l14 0M5 13l14 0M5 18l14 0"/></svg>
+          FAJITAS
+        </a>
+        <a href="/vegan-vegetarisch" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12h20"/><path d="M12 2c-3 4-4 8-4 10s1 6 4 10"/><path d="M12 2c3 4 4 8 4 10s-1 6-4 10"/></svg>
+          VEGAN &amp; VEGGIE
+        </a>
+        <a href="/cocktails" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 22l4-11 4 11"/><path d="M5 3l14 0L12 11z"/></svg>
+          COCKTAILS &amp; DRINKS
+        </a>
+        <a href="/ueber-uns" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          ÜBER UNS
+        </a>
+        <a href="/anfahrt" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          ANFAHRT
+        </a>
+        <a href="/kontakt" class="mobile-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.12 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          KONTAKT
+        </a>
+      </nav>
+
+      <div class="drawer-footer">
+        <a 
+          href="https://www.google.com/maps/reserve/v/dine/c/0hxd20-gUKU?source=pa&opi=79508299&hl=en-IN&gei=EL6PauOABevQwcsP1JSfoAE&ahbb=1&sourceurl=https://www.google.com/maps/preview/place?authuser%3D0%26hl%3Den%26gl%3Din%26pb%3D!1m14!1s0x47a851dbd1c782e9:0xe4e5b3aac100aaca!3m12!1m3!1d50109.128351697895!2d73.89408309999999!3d18.847821250000003!2m3!1f0!2f0!3f0!3m2!1i2552!2i1274!4f13.1!12m4!2m3!1i360!2i120!4i8!13m57!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m8!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!14m5!1sA76Pasy_JcyywcsP89HToAc:53!2s1i:0,t:150714,p:A76Pasy_JcyywcsP89HToAc:53!7e81!12e3!17sA76Pasy_JcyywcsP89HToAc:60!15m110!1m28!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m17!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!30b1!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!90m2!1m1!1e2!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!128m1!1b1!21m28!1m6!1m2!i0!2i0!2m2!1i530!2i1274!1m6!1m2!i2502!2i0!2m2!1i2552!2i1274!1m6!1m2!i0!2i0!2m2!1i2552!2i20!1m6!1m2!i0!2i1254!2m2!1i2552!2i1274!22m1!1e81!29m0!30m6!3b1!6m1!2b1!7m1!2b1!9b1!34m5!7b1!10b1!14b1!15m1!1b0!37i792!39sTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany%26q%3DTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary drawer-cta-btn" 
+          aria-label="Tisch reservieren via Google Maps"
+        >
+          TISCH RESERVIEREN
+        </a>
+        <p class="drawer-address">Reinhardtstraße 37, 10117 Berlin-Mitte</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay behind drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+</header>
+
+<style>
+  .cantina-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    background-color: var(--bg-canvas);
+    border-bottom: 3px solid var(--brand-green);
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease;
+    padding: 0.4rem 0;
+  }
+
+  .cantina-header.scrolled {
+    box-shadow: 0 4px 18px rgba(7, 83, 25, 0.15);
+    background-color: #FFF4D0;
+  }
+
+  .nav-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    flex: 1;
+  }
+
+  .nav-left { justify-content: flex-start; }
+  .nav-right { justify-content: flex-end; }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    color: var(--brand-green);
+    position: relative;
+    padding: 0.35rem 0;
+    transition:
+      color var(--dur-ui) ease,
+      transform var(--dur-fast) var(--ease-out);
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: var(--energy-red);
+    border-radius: 2px;
+    transition: width 0.2s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+      color: var(--energy-red);
+      transform: translateY(-2px);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+  }
+
+  .nav-link.active::after { width: 100%; }
+  .nav-link.active { color: var(--energy-red); }
+
+  /* ── Center logo ── */
+  .nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-wrapper {
+    display: block;
+    transition: transform 250ms var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .logo-wrapper:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+  }
+
+  .brand-logo {
+    height: 125px;
+    width: auto;
+    max-width: 280px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(7, 83, 25, 0.25));
+    transition: transform var(--dur-medium) var(--ease-out);
+  }
+
+  /* ── Reserve CTA ── */
+  .nav-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--accent-yellow);
+    color: var(--brand-green);
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 0.88rem;
+    letter-spacing: 0.5px;
+    padding: 0.6rem 1.3rem;
+    border-radius: var(--radius-pill);
+    border: var(--border-thick);
+    box-shadow: var(--shadow-sticker);
+    text-transform: uppercase;
+    transition:
+      transform var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out),
+      background-color var(--dur-ui) ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nav-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sticker-hover);
+      background-color: #ffd866;
+    }
+  }
+
+  .nav-cta-btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: var(--shadow-sticker-active);
+  }
+
+  /* ── Hamburger ── */
+  .mobile-toggle-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 950;
+    flex-shrink: 0;
+  }
+
+  .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--brand-green);
+    border-radius: 2px;
+    /* CSS transition handles X morphing */
+    transition:
+      transform 250ms var(--ease-out),
+      opacity 200ms ease;
+    transform-origin: center;
+  }
+
+  /* Hamburger → X morphing via .open class */
+  .cantina-header.menu-open .bar-1 {
+    transform: translateY(9.5px) rotate(45deg);
+  }
+  .cantina-header.menu-open .bar-2 {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .cantina-header.menu-open .bar-3 {
+    transform: translateY(-9.5px) rotate(-45deg);
+  }
+
+  /* ── Mobile Drawer ── */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 360px;
+    height: 100dvh;
+    background-color: var(--bg-canvas);
+    border-left: 3px solid var(--brand-green);
+    box-shadow: -8px 0 32px rgba(7, 83, 25, 0.2);
+    z-index: 1000;
+    /* iOS drawer easing from Emil skill */
+    transition: right 350ms var(--ease-drawer);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .mobile-drawer.open {
+    right: 0;
+  }
+
+  .drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 83, 25, 0.25);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+  }
+
+  .mobile-drawer.open ~ .drawer-overlay,
+  .drawer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-drawer-inner {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    gap: 1.2rem;
+  }
+
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--brand-green);
+    padding-bottom: 1rem;
+  }
+
+  .drawer-logo-img { height: 52px; }
+
+  .drawer-close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: var(--border-thick);
+    background-color: var(--energy-red);
+    color: var(--bg-canvas);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 0 #8f1c0d;
+    transition: transform var(--dur-fast) var(--ease-out);
+    flex-shrink: 0;
+  }
+
+  .drawer-close-btn:active {
+    transform: scale(0.95);
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .mobile-link {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--brand-green);
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+    background-color: var(--card-canvas);
+    border: 1.5px solid rgba(7, 83, 25, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    transition:
+      background-color var(--dur-ui) ease,
+      color var(--dur-ui) ease,
+      transform var(--dur-fast) var(--ease-out),
+      border-color var(--dur-ui) ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .mobile-link:hover {
+      background-color: var(--brand-green);
+      color: var(--accent-yellow);
+      transform: translateX(4px);
+      border-color: var(--brand-green);
+    }
+  }
+
+  .drawer-footer {
+    margin-top: auto;
+    padding-top: 1.2rem;
+    border-top: 2px solid var(--brand-green);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .drawer-cta-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .drawer-address {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .nav-group .nav-link { font-size: 0.84rem; }
+    .nav-group { gap: 1.1rem; }
+    .brand-logo { height: 105px; max-width: 230px; }
+  }
+
+  @media (max-width: 900px) {
+    .nav-left { display: none; }
+    .nav-right .nav-link { display: none; }
+    .mobile-toggle-btn { display: flex; }
+    .brand-logo { height: 92px; max-width: 200px; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-cta-btn { display: none; } /* Use floating taco button on mobile */
+    .brand-logo { height: 75px; max-width: 160px; }
+  }
+</style>
+
+<script>
+  // Drawer toggle — minimal JS here, animation.js handles the heavy lifting
+  // But drawer open/close needs to sync the hamburger morphing class
+  const header = document.getElementById('cantinaHeader');
+  const toggle = document.getElementById('mobileMenuToggle');
+  const drawer = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('drawerOverlay');
+  const closeBtn = document.getElementById('drawerCloseBtn');
+
+  const open = () => {
+    drawer?.classList.add('open');
+    overlay?.classList.add('active');
+    header?.classList.add('menu-open');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    drawer?.classList.remove('open');
+    overlay?.classList.remove('active');
+    header?.classList.remove('menu-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  toggle?.addEventListener('click', () => {
+    drawer?.classList.contains('open') ? close() : open();
+  });
+
+  closeBtn?.addEventListener('click', close);
+  overlay?.addEventListener('click', close);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer?.classList.contains('open')) close();
+  });
+
+  // Sticky nav via IntersectionObserver (from animations.js sentinel pattern)
+  const sentinel = document.getElementById('navSentinel');
+  if (header && sentinel) {
+    new IntersectionObserver(([entry]) => {
+      header.classList.toggle('scrolled', !entry.isIntersecting);
+    }).observe(sentinel);
+  }
+</script>

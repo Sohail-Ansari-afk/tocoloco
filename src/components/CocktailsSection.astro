@@ -1,0 +1,242 @@
+---
+// CocktailsSection.astro — Zero-Cards Cantina Cocktail Bar Highlights
+const cocktails = [
+  {
+    nr: 540,
+    name: 'Classic Margarita',
+    badge: '★ DER KLASSIKER',
+    desc: 'Tequila, Limettensaft, Triple Sec mit feinem Meersalzrand.',
+    price: '8,90 €',
+    tag: 'Margarita'
+  },
+  {
+    nr: 539,
+    name: 'Mango Margarita',
+    badge: 'FRUCHTIG',
+    desc: 'Tequila, samtiges Mangopüree oder Mangosirup, frischer Limettensaft.',
+    price: '8,90 €',
+    tag: 'Margarita'
+  },
+  {
+    nr: 529,
+    name: 'Taco Loco Cocktail',
+    badge: '★ SIGNATURE',
+    desc: 'Vodka, Southern Comfort, Grenadine, Orangensaft, Ananassaft und Zitronensaft.',
+    price: '8,90 €',
+    tag: 'Signature'
+  },
+  {
+    nr: 524,
+    name: 'Mojito Cubano',
+    badge: 'REFRESHING',
+    desc: 'Weißer Rum, frische Minze, Limettensaft, Rohrzucker und prickelndes Sodawasser.',
+    price: '7,90 €',
+    tag: 'Classic'
+  },
+  {
+    nr: 521,
+    name: 'Long Island Iced Tea',
+    badge: 'BESTSELLER',
+    desc: 'Vodka, Gin, weißer Rum, Triple Sec, Zitronensaft, Limettensaft, Orangensaft und Cola.',
+    price: '9,90 €',
+    tag: 'Power Drink'
+  },
+  {
+    nr: 501,
+    name: 'Coconut Kiss (Mocktail)',
+    badge: 'ALKOHOLFREI',
+    desc: 'Cremiger Kokossirup, aromatischer Ananassaft und feine Sahne — fruchtig & mild.',
+    price: '8,90 €',
+    tag: 'Virgin'
+  },
+  {
+    nr: 532,
+    name: 'Piña Colada',
+    badge: 'CREMIG',
+    desc: 'Weißer Rum, Kokoscreme und Ananassaft — karibisch-mexikanischer Genuss.',
+    price: '7,90 €',
+    tag: 'Colada'
+  },
+  {
+    nr: 312,
+    name: 'Corona Cerveza',
+    badge: 'MEXIKO 🇲🇽',
+    desc: 'Eiskaltes mexikanisches Premium-Flaschenbier, serviert mit frischem Limettenschnitz.',
+    price: '4,90 €',
+    tag: 'Cerveza'
+  }
+];
+---
+
+<section class="cocktails-cantina-section" id="cocktails">
+  <div class="cantina-container">
+    
+    <!-- Section Header -->
+    <div class="section-header-center" data-reveal>
+      <span class="sticker-badge badge-favorite" style="transform:rotate(-2deg)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 22l4-11 4 11"/><path d="M5 3l14 0L12 11z"/></svg>
+        MEXIKANISCHER ABEND TRIFFT COCKTAILBAR
+      </span>
+      <h2 class="section-title">COCKTAILS &amp; MARGARITAS</h2>
+      <p class="section-lead">
+        Ein Restaurantbesuch darf gern länger dauern. Genieße handgemixten Margaritas, rauchigen Mezcal, erfrischende Longdrinks und hausgemachte Limonaden in Berlin-Mitte.
+      </p>
+    </div>
+
+    <!-- Editorial Drink Spreads with data-stagger -->
+    <div class="cocktails-editorial-grid" data-stagger>
+      {cocktails.map((drink) => (
+        <div class="drink-row-item">
+          <div class="drink-header-row">
+            <div class="drink-title-box">
+              <h3 class="drink-name-title">{drink.name}</h3>
+              <span class="sticker-badge badge-new">{drink.badge}</span>
+            </div>
+            <span class="drink-price-tag">{drink.price}</span>
+          </div>
+
+          <p class="drink-desc-text" set:html={drink.desc} />
+          
+          <div class="drink-meta-row">
+            <span class="drink-category-tag">{drink.tag}</span>
+            <!-- Cocktail glass SVG replaces emoji -->
+            <svg class="drink-glyph" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 22l4-11 4 11"/><path d="M5 3l14 0L12 11z"/></svg>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Action -->
+    <div class="cocktails-action">
+      <a href="/cocktails" class="btn-primary">
+        <span>GESAMTE GETRÄNKEKARTE ANSEHEN →</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cocktails-cantina-section {
+    background-color: var(--bg-canvas);
+    padding: 5rem 0 5.5rem;
+    border-bottom: 3px solid var(--brand-green);
+  }
+
+  .section-header-center {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-title {
+    color: var(--brand-green);
+    margin: 0.6rem 0 0.8rem;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  }
+
+  .section-lead {
+    color: var(--text-dark);
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  /* ── 3-Column Open Editorial Grid (NO CARDS) ── */
+  .cocktails-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .drink-row-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+    border-bottom: var(--border-dashed);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .drink-row-item:hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  .drink-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .drink-title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .drink-name-title {
+    color: var(--brand-green);
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
+
+  .drink-price-tag {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--energy-red);
+    white-space: nowrap;
+  }
+
+  .drink-desc-text {
+    font-size: 0.92rem;
+    color: var(--text-ink);
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    flex: 1;
+  }
+
+  .drink-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .drink-category-tag {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .drink-glyph {
+    color: var(--brand-green);
+    opacity: 0.7;
+  }
+
+  .cocktails-action {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 1050px) {
+    .cocktails-editorial-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .cocktails-cantina-section {
+      padding: 3.5rem 0;
+    }
+    .cocktails-editorial-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

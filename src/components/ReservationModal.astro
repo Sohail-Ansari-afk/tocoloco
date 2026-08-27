@@ -1,0 +1,337 @@
+---
+// ReservationModal.astro — Interactive Cantina Table Booking Modal
+---
+
+<div class="reservation-modal-backdrop" id="reservationModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="reservation-modal-container">
+    <div class="modal-card">
+      
+      <!-- Close Button -->
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Schließen">
+        ✕
+      </button>
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <span class="sticker-badge badge-favorite">★ CANTINA BERLIN-MITTE</span>
+        <h2 id="modalTitle" class="modal-title">TISCH RESERVIEREN</h2>
+        <p class="modal-subtitle">
+          Sichere dir deinen Platz bei <strong>Taco Loco</strong> in der Reinhardtstraße 37, 10117 Berlin.
+        </p>
+      </div>
+
+      <!-- Reservation Form -->
+      <form class="reservation-form" id="reservationForm">
+        <div class="form-grid">
+          
+          <!-- Name -->
+          <div class="form-group">
+            <label for="resName" class="form-label">Dein Name *</label>
+            <input type="text" id="resName" class="form-input" placeholder="z. B. Carlos Mendez" required />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="resEmail" class="form-label">E-Mail-Adresse *</label>
+            <input type="email" id="resEmail" class="form-input" placeholder="name@beispiel.de" required />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="resPhone" class="form-label">Telefonnummer *</label>
+            <input type="tel" id="resPhone" class="form-input" placeholder="+49 30 12345678" required />
+          </div>
+
+          <!-- Guests -->
+          <div class="form-group">
+            <label for="resGuests" class="form-label">Anzahl Personen *</label>
+            <select id="resGuests" class="form-select" required>
+              <option value="1">1 Person</option>
+              <option value="2" selected>2 Personen</option>
+              <option value="3">3 Personen</option>
+              <option value="4">4 Personen</option>
+              <option value="5">5 Personen</option>
+              <option value="6">6 Personen</option>
+              <option value="7+">7+ Personen (Gruppe)</option>
+            </select>
+          </div>
+
+          <!-- Date -->
+          <div class="form-group">
+            <label for="resDate" class="form-label">Datum *</label>
+            <input type="date" id="resDate" class="form-input" required />
+          </div>
+
+          <!-- Time -->
+          <div class="form-group">
+            <label for="resTime" class="form-label">Uhrzeit *</label>
+            <select id="resTime" class="form-select" required>
+              <option value="12:00">12:00 Uhr (Lunch)</option>
+              <option value="12:30">12:30 Uhr</option>
+              <option value="13:00">13:00 Uhr</option>
+              <option value="13:30">13:30 Uhr</option>
+              <option value="17:30">17:30 Uhr</option>
+              <option value="18:00">18:00 Uhr</option>
+              <option value="18:30">18:30 Uhr</option>
+              <option value="19:00" selected>19:00 Uhr (Dinner)</option>
+              <option value="19:30">19:30 Uhr</option>
+              <option value="20:00">20:00 Uhr</option>
+              <option value="20:30">20:30 Uhr</option>
+              <option value="21:00">21:00 Uhr</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Special Notes -->
+        <div class="form-group full-width">
+          <label for="resNotes" class="form-label">Besondere Wünsche / Anmerkungen (Allergien, Vegan, etc.)</label>
+          <textarea id="resNotes" class="form-textarea" rows="2" placeholder="z. B. 1x vegan, Geburtstagstisch"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary form-submit-btn">
+            <span>JETZT VERBINDLICH RESERVIEREN →</span>
+          </button>
+        </div>
+
+        <!-- Feedback Alert -->
+        <div class="form-feedback" id="formFeedback" style="display: none;">
+          <div class="feedback-success">
+            🌮 <strong>¡Muchas Gracias!</strong> Deine Reservierung ist eingegangen. Wir bestätigen deine Anfrage schnellstmöglich per E-Mail/SMS!
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .reservation-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background-color: rgba(7, 83, 25, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .reservation-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .reservation-modal-container {
+    width: 100%;
+    max-width: 620px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .reservation-modal-backdrop.active .reservation-modal-container {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-card {
+    background-color: var(--card-canvas);
+    border: var(--border-ultra);
+    border-radius: var(--radius-modal);
+    padding: 2.2rem;
+    box-shadow: 0 16px 36px rgba(4, 54, 16, 0.35);
+    position: relative;
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--energy-red);
+    color: var(--bg-canvas);
+    border: var(--border-thick);
+    box-shadow: 0 3px 0 #075319;
+    font-size: 1.2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+
+  .modal-close-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    background-color: #b82813;
+  }
+
+  .modal-header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .modal-title {
+    color: var(--brand-green);
+    margin: 0.6rem 0 0.4rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  }
+
+  .modal-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-group.full-width {
+    margin-top: 1rem;
+  }
+
+  .form-label {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--brand-green);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    border-radius: 12px;
+    border: var(--border-thick);
+    background-color: var(--bg-canvas);
+    color: var(--text-ink);
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--energy-red);
+    box-shadow: 0 0 0 3px rgba(228, 56, 32, 0.25);
+    background-color: var(--white);
+  }
+
+  .form-actions {
+    margin-top: 1.6rem;
+    text-align: center;
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .form-feedback {
+    margin-top: 1.2rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #D4EDDA;
+    border: 2px solid #28A745;
+    color: #155724;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    .modal-card {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Set default minimum date to today
+  const dateInput = document.getElementById('resDate') as HTMLInputElement | null;
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+    dateInput.value = today;
+  }
+
+  const modal = document.getElementById('reservationModal');
+  const closeBtn = document.getElementById('modalCloseBtn');
+  const openButtons = document.querySelectorAll('.open-reserve-btn');
+  const form = document.getElementById('reservationForm') as HTMLFormElement | null;
+  const feedback = document.getElementById('formFeedback');
+
+  function openModal() {
+    modal?.classList.add('active');
+    modal?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal?.classList.remove('active');
+    modal?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  const GOOGLE_RESERVE_URL = 'https://www.google.com/maps/reserve/v/dine/c/0hxd20-gUKU?source=pa&opi=79508299&hl=en-IN&gei=EL6PauOABevQwcsP1JSfoAE&ahbb=1&sourceurl=https://www.google.com/maps/preview/place?authuser%3D0%26hl%3Den%26gl%3Din%26pb%3D!1m14!1s0x47a851dbd1c782e9:0xe4e5b3aac100aaca!3m12!1m3!1d50109.128351697895!2d73.89408309999999!3d18.847821250000003!2m3!1f0!2f0!3f0!3m2!1i2552!2i1274!4f13.1!12m4!2m3!1i360!2i120!4i8!13m57!2m2!1i203!2i100!3m2!2i4!5b1!6m6!1m2!1i86!2i86!1m2!1i408!2i240!7m33!1m3!1e1!2b0!3e3!1m3!1e2!2b1!3e2!1m3!1e2!2b0!3e3!1m3!1e8!2b0!3e3!1m3!1e10!2b0!3e3!1m3!1e10!2b1!3e2!1m3!1e10!2b0!3e4!1m3!1e9!2b1!3e2!2b1!9b0!15m8!1m7!1m2!1m1!1e2!2m2!1i195!2i195!3i20!14m5!1sA76Pasy_JcyywcsP89HToAc:53!2s1i:0,t:150714,p:A76Pasy_JcyywcsP89HToAc:53!7e81!12e3!17sA76Pasy_JcyywcsP89HToAc:60!15m110!1m28!13m9!2b1!3b1!4b1!6i1!8b1!9b1!14b1!20b1!25b1!18m17!3b1!4b1!5b1!6b1!9b1!13b1!14b1!17b1!20b1!21b1!22b1!30b1!32b1!33m1!1b1!34b1!36e2!10m1!8e3!11m1!3e1!17b1!20m2!1e3!1e6!24b1!25b1!26b1!27b1!29b1!30m1!2b1!36b1!37b1!39m3!2m2!2i1!3i1!43b1!52b1!54m1!1b1!55b1!56m1!1b1!61m2!1m1!1e1!65m5!3m4!1m3!1m2!1i224!2i298!72m22!1m8!2b1!5b1!7b1!12m4!1b1!2b1!4m1!1e1!4b1!8m10!1m6!4m1!1e1!4m1!1e3!4m1!1e4!3sother_user_google_review_posts__and__hotel_and_vr_partner_review_posts!6m1!1e1!9b1!89b1!90m2!1m1!1e2!98m3!1b1!2b1!3b1!103b1!113b1!114m3!1b1!2m1!1b1!117b1!122m1!1b1!126b1!127b1!128m1!1b1!21m28!1m6!1m2!i0!2i0!2m2!1i530!2i1274!1m6!1m2!i2502!2i0!2m2!1i2552!2i1274!1m6!1m2!i0!2i0!2m2!1i2552!2i20!1m6!1m2!i0!2i1254!2m2!1i2552!2i1274!22m1!1e81!29m0!30m6!3b1!6m1!2b1!7m1!2b1!9b1!34m5!7b1!10b1!14b1!15m1!1b0!37i792!39sTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany%26q%3DTaco%2BLoco%2BCantina%2BMexicana,%2BReinhardtstra%25C3%259Fe,%2BBerlin,%2BGermany';
+
+  openButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (!btn.getAttribute('href')) {
+        e.preventDefault();
+        window.open(GOOGLE_RESERVE_URL, '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Handle Form Submission
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (feedback) {
+      feedback.style.display = 'block';
+      setTimeout(() => {
+        closeModal();
+        form.reset();
+        feedback.style.display = 'none';
+      }, 3500);
+    }
+  });
+</script>

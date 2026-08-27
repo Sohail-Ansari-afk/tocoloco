@@ -1,0 +1,136 @@
+---
+// FloatingTacoOrder.astro — Persistent floating taco CTA button
+// SVG taco icon replaces emoji. Hard-edge poster shadow per design system.
+// Entrance animation handled by animations.js (1.2s delay, slide up from bottom).
+---
+
+<div class="floating-taco-btn-wrap" aria-label="Taco bestellen" role="complementary">
+  <a
+    href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFsMnR6bGNxcxgAOgMI8A0%3D&g2lbs=AEzIGDvC4HW_Z0-1xRG2cpfR835KZDM220rsI6XlmHXEP4nQkpXT0trK13oud1z2s4qptYl2_8P5&hl=en-IN&gl=in&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&gei=EL6PauOABevQwcsP1JSfoAE&ei=EL6PauOABevQwcsP1JSfoAE&fo_s=OA&opi=79508299&ebb=1&cs=0&foub=mcpp"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="floating-taco-btn"
+    id="floatingTacoBtn"
+    aria-label="Jetzt online bestellen via Google"
+    title="Jetzt online bestellen"
+  >
+    <!-- Taco SVG glyph -->
+    <span class="taco-glyph" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Taco shell -->
+        <path d="M24 6C15.16 6 8 13 6 22H42C40 13 32.84 6 24 6Z" fill="#F7C844"/>
+        <!-- Taco filling bottom -->
+        <path d="M5.5 24C5.2 25.5 5 27 5 28.5C5 36.5 13.7 43 24 43C34.3 43 43 36.5 43 28.5C43 27 42.8 25.5 42.5 24H5.5Z" fill="#075319" opacity="0.85"/>
+        <!-- Filling details -->
+        <path d="M13 29C15.5 32 19 34 24 34C29 34 32.5 32 35 29" stroke="#F7C844" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Lettuce green -->
+        <ellipse cx="18" cy="26" rx="3" ry="2" fill="#22c55e" opacity="0.9"/>
+        <ellipse cx="30" cy="26" rx="3" ry="2" fill="#22c55e" opacity="0.9"/>
+        <!-- Tomato red -->
+        <circle cx="24" cy="25.5" r="2" fill="#E43820" opacity="0.9"/>
+      </svg>
+    </span>
+    <span class="taco-label">
+      <span class="taco-label-order">ORDER</span>
+      <span class="taco-label-now">NOW</span>
+    </span>
+  </a>
+</div>
+
+<style>
+  /* Wrapper starts hidden — GSAP animates it in after 1.2s */
+  .floating-taco-btn-wrap {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 800;
+    opacity: 0; /* GSAP sets to 1 */
+    transform: translateY(60px); /* GSAP slides up */
+  }
+
+  .floating-taco-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: var(--brand-green);
+    border: 3px solid var(--brand-green-dark);
+    /* Hard-edge screen-printed shadow per design system */
+    box-shadow: 0 4px 0 var(--brand-green-dark), 0 8px 24px rgba(7, 83, 25, 0.35);
+    cursor: pointer;
+    transition:
+      transform var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .floating-taco-btn:hover {
+      transform: translateY(-4px) scale(1.06);
+      box-shadow: 0 8px 0 var(--brand-green-dark), 0 16px 32px rgba(7, 83, 25, 0.4);
+    }
+  }
+
+  .floating-taco-btn:active {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 2px 0 var(--brand-green-dark), 0 4px 12px rgba(7, 83, 25, 0.3);
+  }
+
+  .taco-glyph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+  }
+
+  .taco-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    gap: 0;
+  }
+
+  .taco-label-order,
+  .taco-label-now {
+    font-family: var(--font-sticker);
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+    color: var(--accent-yellow);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  /* Mobile: horizontal pill at bottom center */
+  @media (max-width: 640px) {
+    .floating-taco-btn-wrap {
+      bottom: 1.5rem;
+      right: 1rem;
+      left: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .floating-taco-btn {
+      width: auto;
+      height: auto;
+      border-radius: var(--radius-pill);
+      flex-direction: row;
+      padding: 0.85rem 1.8rem;
+      gap: 0.6rem;
+    }
+
+    .taco-label {
+      flex-direction: row;
+      gap: 0.25rem;
+    }
+
+    .taco-label-order,
+    .taco-label-now {
+      font-size: 0.82rem;
+    }
+  }
+</style>
