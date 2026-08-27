@@ -1,9 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "taco-loco-cantina-mexicana",
+  "name": "tocoloco",
+  "compatibility_date": "2026-08-27",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
   "pages_build_output_dir": "./dist",
-  "compatibility_date": "2024-09-23",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  "workers_dev": true,
+  "preview_urls": true
 }
