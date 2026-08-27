@@ -4,11 +4,8 @@
   "compatibility_date": "2026-08-27",
   "assets": {
     "directory": "./dist",
-    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
-  "pages_build_output_dir": "./dist",
-  "workers_dev": true,
-  "preview_urls": true
+  "pages_build_output_dir": "./dist"
 }
